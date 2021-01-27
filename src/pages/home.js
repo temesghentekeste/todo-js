@@ -1,26 +1,23 @@
+import sidebar from '../components/Sidebar';
+import main from '../components/Main';
+
 const home = () => {
   const container = document.querySelector('#container');
 
-  const UILayoutDiv = document.createElement('div')
+  const UILayoutDiv = document.createElement('div');
   UILayoutDiv.classList.add('container-fluid');
 
-  const UILayoutRow = document.createElement('div')
-  UILayoutRow.classList.add('row')
-  UILayoutDiv.appendChild(UILayoutRow)
-  
-  const UISidebar = document.createElement('aside')
-  UISidebar.classList.add('col-3')
-  UISidebar.textContent = 'Sidebar'
-  UILayoutRow.appendChild(UISidebar);
+  const UILayoutRow = document.createElement('div');
+  UILayoutRow.classList.add('row');
+  UILayoutDiv.appendChild(UILayoutRow);
 
-  const UIMainContent = document.createElement('main');
-  UIMainContent.classList.add('col-9', 'bg-dark', 'text-white');
-  UIMainContent.textContent = 'Main Content';
-  UILayoutRow.appendChild(UIMainContent);
+  // Sidebar: aside
+  UILayoutRow.appendChild(sidebar());
 
-  container.appendChild(UILayoutDiv)
+  // Main: main
+  UILayoutRow.appendChild(main());
 
-
+  container.appendChild(UILayoutDiv);
 };
 
 export default home;

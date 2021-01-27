@@ -9,13 +9,11 @@ const PageCtrl = (() => {
     container.id = 'container';
     contentDiv.append(container);
   };
-  
-  
+
   return {
     init() {
       createContainer();
       home();
-      
     },
   };
 })();
