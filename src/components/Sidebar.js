@@ -1,13 +1,13 @@
 import { getDefaultProject, getAllProjects } from '../data/projects';
 const sidebar = () => {
   const UISidebar = document.createElement('aside');
-  UISidebar.classList.add('col-3');
+  UISidebar.classList.add('col-3', 'border');
 
   const sidebarHeading = document.createElement('h1');
   sidebarHeading.classList.add(
     'mt-5',
     'pb-2',
-    'mx-4',
+    'mx-2',
     'border-bottom',
     'font-weight-bold'
   );
@@ -20,7 +20,7 @@ const sidebar = () => {
   const { name } = getDefaultProject();
   const UIDivProjectName = document.createElement('div');
   const h4 = document.createElement('h4');
-  h4.classList.add('mt-2', 'pb-2', 'mx-4', 'border-bottom');
+  h4.classList.add('m-2', 'pb-2', 'border-bottom');
   h4.textContent = name;
   UIDivProjectName.append(h4);
   UISidebar.append(UIDivProjectName);

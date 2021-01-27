@@ -1,7 +1,6 @@
 import './main.scss';
 import './mobile.scss';
 import home from './pages/home';
-import getDefaultProject from './data/projects';
 
 const PageCtrl = (() => {
   const createContainer = () => {
