@@ -1,6 +1,7 @@
 import Project from '../model/project';
 import Db from '../data/db';
 import renderNewProject from '../ui/projects/new';
+import currentProject from '../ui/projects/current';
 
 // Event Listners
 const showAddNewProjectModal = () => {
@@ -41,7 +42,7 @@ const renderCurrentProject = () => {
 
     const db = new Db();
     const project = db.getProject(id);
-    console.log('clicked', project, db);
+    currentProject(project);
   });
 };
 

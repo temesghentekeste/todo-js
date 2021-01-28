@@ -6,7 +6,11 @@ class Db {
   }
 
   getProject(id) {
-    return id;
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    let currentProject;
+    currentProject = projects.find( p => p.id === parseInt(id));
+
+    return currentProject;
   }
 
   getProjects() {

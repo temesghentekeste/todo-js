@@ -1,12 +1,9 @@
-import { getDefaultProject } from '../data/projects';
-import getTasks from './Tasks';
+import getTasks from '../../components/Tasks';
 
-const main = () => {
-  const UIMain = document.createElement('main');
-  UIMain.classList.add('col-9', 'py-3', 'bg-dark', 'text-white');
-
-  // Default project description
-  const { name, description, tasks } = getDefaultProject();
+const currentProject = (project) => {
+  const UIMain = document.querySelector('main');
+  UIMain.innerHTML = '';
+  const { name, description, tasks } = project;
 
   // Project Header
   const projectHeaderContainer = document.createElement('div');
@@ -15,7 +12,7 @@ const main = () => {
     'pb-2',
     'mx-4',
     'border-bottom',
-    'font-weight-bold',
+    'font-weight-bold'
   );
 
   const projectNameHeading = document.createElement('h1');
@@ -37,4 +34,4 @@ const main = () => {
   return UIMain;
 };
 
-export default main;
+export default currentProject;
