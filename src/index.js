@@ -10,7 +10,7 @@ const PageCtrl = (() => {
     contentDiv.append(container);
   };
 
-
+  
   return {
     init() {
       createContainer();

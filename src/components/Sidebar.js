@@ -20,11 +20,24 @@ const sidebar = () => {
   const { name } = getDefaultProject();
   const UIDivProjectName = document.createElement('div');
   const h4 = document.createElement('h4');
-  h4.classList.add('m-2', 'pb-2', 'border-bottom');
+  h4.classList.add('mx-3', 'pb-2', 'border-bottom');
   h4.textContent = name;
   UIDivProjectName.append(h4);
   UISidebar.append(UIDivProjectName);
-  
+
+  // Add project button
+  const btnAddProject = document.createElement('button');
+  btnAddProject.id = 'btn-add-project';
+  btnAddProject.classList.add('btn', 'btn-primary', 'float-right');
+  btnAddProject.textContent = 'Add New Project';
+
+  // Event Listners
+  btnAddProject.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('clicked');
+  });
+
+  UISidebar.append(btnAddProject);
   return UISidebar;
 };
 
