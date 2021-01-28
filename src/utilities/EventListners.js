@@ -1,6 +1,7 @@
 import Project from '../model/project';
 import Db from '../data/db';
 import renderNewProject from '../ui/projects/new';
+import renderUpdatedProject from '../ui/projects/edit';
 import currentProject from '../ui/projects/current';
 
 // Event Listners
@@ -57,12 +58,18 @@ const updateProject = () => {
 
   btnUpdateProject.addEventListener('click', (e) => {
     // Get current project
-    const db = new Db();
-    const currentProject = db.getCurrentProject();
     e.preventDefault();
+    const db = new Db();
+    const name = document.querySelector('#update-project-name').value;
+    const desc = document.querySelector('#update-project-description').value;
 
-    console.log('clicked');
-    console.log(currentProject);
+    let updatedProject = db.getCurrentProject().currentProject;
+    updatedProject.name = name;
+    updatedProject.description = desc;
+    renderUpdatedProject(updatedProject);
+    db.updateProject(updatedProject);
+    updateProjectModal.querySelector('[data-dismiss="modal"]').click();
+
   });
 
   btnUpdateDefaultProject.addEventListener('click', (e) => {
@@ -73,7 +80,7 @@ const updateProject = () => {
     const UIProjectName = document.querySelector('#update-project-name');
     const UIProjDes = document.querySelector('#update-project-description');
 
-    // Prepare update project modal for updating
+    // Prepare default project for update
     UIProjectName.value = currentProject.name;
     UIProjDes.value = currentProject.description;
   });

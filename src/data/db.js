@@ -8,7 +8,7 @@ class Db {
   getProject(id) {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
     let project;
-    project = projects.find((p) => p.id === parseInt(id));
+    project = projects.find((p) => p.id === id);
 
     return project;
   }
@@ -25,7 +25,6 @@ class Db {
   }
 
   saveProject({ id, name, description, tasks }) {
-    console.log(id, name, description, tasks);
     let projects;
 
     const newProject = {
@@ -50,22 +49,38 @@ class Db {
 
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
-  
+
   getCurrentProject() {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
     let currentProject = projects[0];
-    
+
     return currentProject;
   }
-  
+
   setCurrentProject(project) {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
     let currentProject = {
-      currentProject: project
-    }
+      currentProject: project,
+    };
     projects.splice(0, 1, currentProject);
-    
+
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
+  }
+
+  updateProject(updatedProject) {
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    projects.forEach( (p, index) => {
+      if(p.id === updatedProject.id) {
+        projects.splice(index, 1, updatedProject);
+      }
+    })
+
+     let currentProject = {
+       currentProject: updatedProject,
+     };
+     projects.splice(0, 1, currentProject);
+     console.log(projects);
+     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 }
 
