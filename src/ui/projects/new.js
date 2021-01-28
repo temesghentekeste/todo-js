@@ -4,6 +4,9 @@ const renderNewProject = ({ name, description }) => {
   const UIDivProjectsContainer = document.querySelector('#projects-container');
 
   const UIDivProjectName = document.createElement('div');
+  UIDivProjectName.classList.add('project');
+  UIDivProjectName.setAttribute('id', `project-${new Date().getTime()}`);
+
   const h4 = document.createElement('h4');
   h4.classList.add('mx-3', 'pb-2', 'border-bottom');
   h4.textContent = name;

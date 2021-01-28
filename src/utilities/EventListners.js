@@ -1,5 +1,7 @@
 import Project from '../model/project';
-import renderNewProject  from '../ui/projects/new';
+import Db from '../data/db';
+import renderNewProject from '../ui/projects/new';
+
 // Event Listners
 const showAddNewProjectModal = () => {
   const btnAddProject = document.querySelector('#btn-add-project');
@@ -22,4 +24,21 @@ const addNewProject = () => {
   });
 };
 
-export { showAddNewProjectModal, addNewProject };
+const renderProject = () => {
+  const UIDivProjectsContainer = document.querySelector('#projects-container');
+
+  UIDivProjectsContainer.addEventListener('click', (e) => {
+    const selectedProject = e.target;
+    const projectName = selectedProject.parentElement
+    let id = projectName.getAttribute('id');
+
+    if (id === null) {
+      return;
+    }
+
+    const project = Db.getProject(id);
+    console.log('clicked', project);
+  });
+};
+
+export { showAddNewProjectModal, addNewProject, renderProject };

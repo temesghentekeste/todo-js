@@ -1,8 +1,11 @@
 import './main.scss';
 import './mobile.scss';
 import home from './views/home';
-import { showAddNewProjectModal, addNewProject } from './utilities/EventListners';
-
+import {
+  showAddNewProjectModal,
+  addNewProject,
+  renderProject,
+} from './utilities/EventListners';
 
 const PageCtrl = (() => {
   const createContainer = () => {
@@ -18,6 +21,7 @@ const PageCtrl = (() => {
       home();
       showAddNewProjectModal();
       addNewProject();
+      renderProject();
     },
   };
 })();
