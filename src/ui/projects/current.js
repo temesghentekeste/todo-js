@@ -14,7 +14,8 @@ const currentProject = (project) => {
     'border-bottom',
     'font-weight-bold',
     'd-flex',
-    'flex-column'
+    'flex-column',
+    'main-project-header'
   );
 
   // Name:h1
@@ -42,7 +43,7 @@ const currentProject = (project) => {
   // Set attributes for Modal
   btnUpdateProject.setAttribute('data-toggle', 'modal');
   btnUpdateProject.setAttribute('data-target', '#updateProjectModal');
-  
+
   projectHeaderContainer.append(btnUpdateProject);
   UIMain.append(projectHeaderContainer);
 

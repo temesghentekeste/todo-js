@@ -57,19 +57,24 @@ const updateProject = () => {
   let btnUpdateDefaultProject = document.querySelector('#btn-update-project');
 
   btnUpdateProject.addEventListener('click', (e) => {
-    // Get current project
     e.preventDefault();
-    const db = new Db();
+    // Get current project
     const name = document.querySelector('#update-project-name').value;
     const desc = document.querySelector('#update-project-description').value;
 
+    const db = new Db();
     let updatedProject = db.getCurrentProject().currentProject;
     updatedProject.name = name;
     updatedProject.description = desc;
-    renderUpdatedProject(updatedProject);
-    db.updateProject(updatedProject);
-    updateProjectModal.querySelector('[data-dismiss="modal"]').click();
 
+    // Render updated project in the UI
+    renderUpdatedProject(updatedProject);
+
+    // Persist updated project in the datastore (LS)
+    db.updateProject(updatedProject);
+
+    // Dismiss the modal
+    updateProjectModal.querySelector('[data-dismiss="modal"]').click();
   });
 
   btnUpdateDefaultProject.addEventListener('click', (e) => {

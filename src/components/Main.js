@@ -1,12 +1,13 @@
-import { getDefaultProject } from '../data/projects';
+import Db from '../data/db';
 import getTasks from './Tasks';
 
 const main = () => {
   const UIMain = document.createElement('main');
   UIMain.classList.add('col-9', 'py-3', 'bg-dark', 'text-white');
 
-  // Default project description
-  const { name, description, tasks } = getDefaultProject();
+  // Default/Current project
+  const db = new Db();
+  const { name, description, tasks } = db.getCurrentProject().currentProject;
 
   // Project Header
   const projectHeaderContainer = document.createElement('div');
@@ -17,7 +18,8 @@ const main = () => {
     'border-bottom',
     'font-weight-bold',
     'd-flex',
-    'flex-column'
+    'flex-column',
+    'main-project-header'
   );
 
   const projectNameHeading = document.createElement('h1');
