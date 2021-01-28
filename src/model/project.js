@@ -1,13 +1,16 @@
+import Db from "../data/db";
+
 class Project {
   constructor(name, description, tasks) {
+    this.id = new Date().getTime();
     this.name = name;
     this.description = description;
     this.tasks = [];
+    this.db = new Db();
   }
 
-  save(name, description) {
-    console.log('called');
-    console.log(name, description);
+  save() {
+    this.db.saveProject(this);
   }
 }
 

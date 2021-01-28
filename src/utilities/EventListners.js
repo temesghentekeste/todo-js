@@ -7,19 +7,21 @@ const showAddNewProjectModal = () => {
   const btnAddProject = document.querySelector('#btn-add-project');
   btnAddProject.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('clicked');
   });
 };
 
 const addNewProject = () => {
-  const form = document.querySelector('#add-project');
-  form.addEventListener('click', (e) => {
+  const btnAddNewProject = document.querySelector('#add-project');
+
+  btnAddNewProject.addEventListener('click', (e) => {
     e.preventDefault();
+
     const name = document.querySelector('#project-name').value;
     const desc = document.querySelector('#project-description').value;
     const newProject = new Project(name, desc);
+    
     renderNewProject(newProject);
-    newProject.save(name, desc);
+    newProject.save();
     projectModal.querySelector('[data-dismiss="modal"]').click();
   });
 };
@@ -36,8 +38,9 @@ const renderProject = () => {
       return;
     }
 
-    const project = Db.getProject(id);
-    console.log('clicked', project);
+    const db = new Db();
+    const project = db.getProject(id);
+    console.log('clicked', project, db);
   });
 };
 
