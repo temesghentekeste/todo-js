@@ -31,7 +31,7 @@ const getUpdateProjectModal = () => {
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary" id="add-project">
+            <button type="button" class="btn btn-primary" id="update-project">
               Save changes
             </button>
           </div>

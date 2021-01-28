@@ -7,7 +7,6 @@ class Project {
     this.description = description;
     this.tasks = [];
     this.db = new Db();
-    this.currentProject = null;
   }
 
   getCurrentProject() {
@@ -15,7 +14,7 @@ class Project {
   }
 
   setCurrentProject() {
-    this.currentProject = this;
+    this.currentProject = this.db.setCurrentProject(this);
   }
 
   save() {

@@ -25,6 +25,7 @@ class Db {
   }
 
   saveProject({ id, name, description, tasks }) {
+    console.log(id, name, description, tasks);
     let projects;
 
     const newProject = {
@@ -49,12 +50,22 @@ class Db {
 
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
-
+  
   getCurrentProject() {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
-    let currentProject = projects.currentProject;
-
+    let currentProject = projects[0];
+    
     return currentProject;
+  }
+  
+  setCurrentProject(project) {
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    let currentProject = {
+      currentProject: project
+    }
+    projects.splice(0, 1, currentProject);
+    
+    localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 }
 

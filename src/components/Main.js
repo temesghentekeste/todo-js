@@ -35,13 +35,13 @@ const main = () => {
     'btn-primary',
     'align-self-end'
   );
-  btnUpdateProject.id = 'btn-update-project'
+  btnUpdateProject.id = 'btn-update-project';
   btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Project`;
-  // Set attributes for Modal
+  // Set attributes to open Update Project Modal
   btnUpdateProject.setAttribute('data-toggle', 'modal');
   btnUpdateProject.setAttribute('data-target', '#updateProjectModal');
   projectHeaderContainer.append(btnUpdateProject);
-  
+
   UIMain.append(projectHeaderContainer);
 
   // Project tasks

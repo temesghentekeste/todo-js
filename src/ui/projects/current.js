@@ -30,6 +30,8 @@ const currentProject = (project) => {
 
   // Update project btn
   const btnUpdateProject = document.createElement('button');
+  btnUpdateProject.id = 'btn-update-project';
+
   btnUpdateProject.classList.add(
     'update-btn',
     'btn',
@@ -37,6 +39,10 @@ const currentProject = (project) => {
     'align-self-end'
   );
   btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Project`;
+  // Set attributes for Modal
+  btnUpdateProject.setAttribute('data-toggle', 'modal');
+  btnUpdateProject.setAttribute('data-target', '#updateProjectModal');
+  
   projectHeaderContainer.append(btnUpdateProject);
   UIMain.append(projectHeaderContainer);
 

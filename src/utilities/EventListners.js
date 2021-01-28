@@ -16,7 +16,7 @@ const addNewProject = () => {
     const desc = document.querySelector('#project-description').value;
     const newProject = new Project(name, desc);
     renderNewProject(newProject);
-    newProject.setCurrentProject()
+    newProject.setCurrentProject();
     newProject.save();
 
     projectModal.querySelector('[data-dismiss="modal"]').click();
@@ -40,24 +40,43 @@ const renderCurrentProject = () => {
     const project = db.getProject(id);
     if (project !== undefined) {
       currentProject(project);
-    } else {
-      return;
+      db.setCurrentProject(project);
+      const UIProjectName = document.querySelector('#update-project-name');
+      const UIProjDes = document.querySelector('#update-project-description');
+
+      // Prepare update project modal for updating
+      UIProjectName.value = project.name;
+      UIProjDes.value = project.description;
     }
   });
 };
 
+const updateProject = () => {
+  let btnUpdateProject = document.querySelector('#update-project');
+  let btnUpdateDefaultProject = document.querySelector('#btn-update-project');
 
-const showUpdateProjectModal = () => {
-  const btnUpdateProject = document.querySelector('#btn-update-project');
   btnUpdateProject.addEventListener('click', (e) => {
+    // Get current project
+    const db = new Db();
+    const currentProject = db.getCurrentProject();
     e.preventDefault();
+
+    console.log('clicked');
+    console.log(currentProject);
+  });
+
+  btnUpdateDefaultProject.addEventListener('click', (e) => {
+    const db = new Db();
+    const currentProject = db.getCurrentProject().currentProject;
+    e.preventDefault();
+
     const UIProjectName = document.querySelector('#update-project-name');
     const UIProjDes = document.querySelector('#update-project-description');
-    // if(project) {
-    //   UIProjectName.value = project.name;
-    //   UIProjDes.value = project.description;
-    // }
+
+    // Prepare update project modal for updating
+    UIProjectName.value = currentProject.name;
+    UIProjDes.value = currentProject.description;
   });
 };
 
-export { addNewProject, renderCurrentProject, showUpdateProjectModal };
+export { addNewProject, renderCurrentProject, updateProject };

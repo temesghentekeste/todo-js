@@ -2,7 +2,7 @@ import './main.scss';
 import './mobile.scss';
 import home from './views/home';
 import {
-  showUpdateProjectModal,
+  updateProject,
   addNewProject,
   renderCurrentProject,
 } from './utilities/EventListners';
@@ -39,6 +39,7 @@ const PageCtrl = (() => {
     defaultProject.save();
   };
 
+
   return {
     init() {
       createContainer();
@@ -46,7 +47,7 @@ const PageCtrl = (() => {
       renderProjects();
       addNewProject();
       renderCurrentProject();
-      showUpdateProjectModal();
+      updateProject();
     },
   };
 })();

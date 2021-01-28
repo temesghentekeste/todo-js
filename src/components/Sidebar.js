@@ -1,4 +1,3 @@
-import { getDefaultProject, getAllProjects } from '../data/projects';
 
 const sidebar = () => {
   const UISidebar = document.createElement('aside');
