@@ -2,6 +2,7 @@ import Project from '../model/project';
 import Db from '../data/db';
 import renderNewProject from '../ui/projects/new';
 import renderUpdatedProject from '../ui/projects/edit';
+import renderDeletedProject from '../ui/projects/delete';
 import currentProject from '../ui/projects/current';
 
 // Event Listners
@@ -91,4 +92,19 @@ const updateProject = () => {
   });
 };
 
-export { addNewProject, renderCurrentProject, updateProject };
+const deleteProject = () => {
+  const btnDeleteProject = document.querySelector('#btn-delete-project');
+
+  btnDeleteProject.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Get project from the datastore
+    const db = new Db();
+    const deletedProject = db.getCurrentProject().currentProject;
+
+    // Update UI to reflect deleted projec
+    renderDeletedProject(deletedProject);
+  });
+};
+
+export { addNewProject, renderCurrentProject, updateProject, deleteProject };

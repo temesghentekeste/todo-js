@@ -2,9 +2,10 @@ import './main.scss';
 import './mobile.scss';
 import home from './views/home';
 import {
-  updateProject,
   addNewProject,
   renderCurrentProject,
+  updateProject,
+  deleteProject,
 } from './utilities/EventListners';
 import Project from './model/project';
 import Db from './data/db';
@@ -39,7 +40,6 @@ const PageCtrl = (() => {
     defaultProject.save();
   };
 
-
   return {
     init() {
       createContainer();
@@ -48,6 +48,7 @@ const PageCtrl = (() => {
       addNewProject();
       renderCurrentProject();
       updateProject();
+      deleteProject();
     },
   };
 })();
