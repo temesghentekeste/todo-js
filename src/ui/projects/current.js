@@ -12,17 +12,32 @@ const currentProject = (project) => {
     'pb-2',
     'mx-4',
     'border-bottom',
-    'font-weight-bold'
+    'font-weight-bold',
+    'd-flex',
+    'flex-column'
   );
 
+  // Name:h1
   const projectNameHeading = document.createElement('h1');
   projectNameHeading.textContent = name;
+
+  // Description: p
   const projectDescription = document.createElement('p');
   projectDescription.textContent = description;
 
   projectHeaderContainer.append(projectNameHeading);
   projectHeaderContainer.append(projectDescription);
 
+  // Update project btn
+  const btnUpdateProject = document.createElement('button');
+  btnUpdateProject.classList.add(
+    'update-btn',
+    'btn',
+    'btn-primary',
+    'align-self-end'
+  );
+  btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Meal`;
+  projectHeaderContainer.append(btnUpdateProject);
   UIMain.append(projectHeaderContainer);
 
   // Project tasks

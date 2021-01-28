@@ -16,6 +16,8 @@ const main = () => {
     'mx-4',
     'border-bottom',
     'font-weight-bold',
+    'd-flex',
+    'flex-column'
   );
 
   const projectNameHeading = document.createElement('h1');
@@ -25,6 +27,11 @@ const main = () => {
 
   projectHeaderContainer.append(projectNameHeading);
   projectHeaderContainer.append(projectDescription);
+  
+  const btnUpdateProject = document.createElement('button');
+  btnUpdateProject.classList.add("update-btn", "btn", "btn-primary", "align-self-end")
+  btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Meal`;
+  projectHeaderContainer.append(btnUpdateProject);
 
   UIMain.append(projectHeaderContainer);
 
