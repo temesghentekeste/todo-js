@@ -9,6 +9,17 @@ class Db {
     return id;
   }
 
+  static getProjects() {
+    let projects;
+
+    if (localStorage.getItem(this.localStorageKey) === null) {
+      projects = [];
+    } else {
+      projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    }
+    return projects;
+  }
+
   saveProject({ id, name, description, tasks }) {
     let projects;
 

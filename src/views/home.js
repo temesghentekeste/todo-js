@@ -20,7 +20,6 @@ const home = () => {
   UILayoutRow.appendChild(main());
 
   // Append project modal
-  console.log(getProjectModal());
   container.appendChild(getProjectModal());
   container.appendChild(UILayoutDiv);
 };

@@ -20,18 +20,6 @@ const sidebar = () => {
   // Projects container
   const UIProjectsContainer = document.createElement('div');
   UIProjectsContainer.id = 'projects-container';
-  
-  
-  const { name } = getDefaultProject();
-  // Default project
-  const UIDivProjectName = document.createElement('div');
-  UIDivProjectName.classList.add('project');
-  UIDivProjectName.setAttribute('id', `${1}`)
-  const h4 = document.createElement('h4');
-  h4.classList.add('mx-3', 'pb-2', 'border-bottom');
-  h4.textContent = name;
-  UIDivProjectName.append(h4);
-  UIProjectsContainer.append(UIDivProjectName);
   UISidebar.append(UIProjectsContainer);
 
   // Add project button
