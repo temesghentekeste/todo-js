@@ -2,7 +2,7 @@ import './main.scss';
 import './mobile.scss';
 import home from './views/home';
 import {
-  showAddNewProjectModal,
+  showUpdateProjectModal,
   addNewProject,
   renderCurrentProject,
 } from './utilities/EventListners';
@@ -22,7 +22,7 @@ const PageCtrl = (() => {
 
   // Render projects from the data store
   const renderProjects = () => {
-    const projects = new Db().getProjects()
+    const projects = new Db().getProjects();
     if (projects.length > 0) {
       renderAllProjects(projects);
       return;
@@ -31,8 +31,10 @@ const PageCtrl = (() => {
     // Initialize and render default project
     const defaultProject = new Project(
       'Default Project',
-      'Default Project Description'
+      'Default Project Description',
+      []
     );
+
     renderNewProject(defaultProject);
     defaultProject.save();
   };
@@ -42,9 +44,9 @@ const PageCtrl = (() => {
       createContainer();
       home();
       renderProjects();
-      showAddNewProjectModal();
       addNewProject();
       renderCurrentProject();
+      showUpdateProjectModal();
     },
   };
 })();

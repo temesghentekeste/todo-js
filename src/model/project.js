@@ -7,6 +7,15 @@ class Project {
     this.description = description;
     this.tasks = [];
     this.db = new Db();
+    this.currentProject = null;
+  }
+
+  getCurrentProject() {
+    return this.currentProject;
+  }
+
+  setCurrentProject() {
+    this.currentProject = this;
   }
 
   save() {

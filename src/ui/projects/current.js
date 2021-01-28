@@ -36,7 +36,7 @@ const currentProject = (project) => {
     'btn-primary',
     'align-self-end'
   );
-  btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Meal`;
+  btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Project`;
   projectHeaderContainer.append(btnUpdateProject);
   UIMain.append(projectHeaderContainer);
 

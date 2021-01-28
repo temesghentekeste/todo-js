@@ -7,10 +7,10 @@ class Db {
 
   getProject(id) {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
-    let currentProject;
-    currentProject = projects.find( p => p.id === parseInt(id));
+    let project;
+    project = projects.find((p) => p.id === parseInt(id));
 
-    return currentProject;
+    return project;
   }
 
   getProjects() {
@@ -34,14 +34,27 @@ class Db {
       tasks,
     };
 
+    let currentProject = {
+      currentProject: newProject,
+    };
+
     if (localStorage.getItem(this.localStorageKey) === null) {
       projects = [];
-      projects.push(newProject);
+      projects.push(currentProject, newProject);
     } else {
       projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+      projects.splice(0, 1, currentProject);
       projects.push(newProject);
     }
+
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
+  }
+
+  getCurrentProject() {
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    let currentProject = projects.currentProject;
+
+    return currentProject;
   }
 }
 

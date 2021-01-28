@@ -1,6 +1,7 @@
 import sidebar from '../components/Sidebar';
 import main from '../components/Main';
 import getProjectModal from '../components/ProjectModal';
+import getUpdateProjectModal from '../components/UpdateProjectModal';
 
 
 const home = () => {
@@ -19,8 +20,12 @@ const home = () => {
   // Main: main
   UILayoutRow.appendChild(main());
 
-  // Append project modal
+  // Append project modal: insert mode
   container.appendChild(getProjectModal());
+  container.appendChild(UILayoutDiv);
+
+  // Append project modal: update mode
+  container.appendChild(getUpdateProjectModal());
   container.appendChild(UILayoutDiv);
 };
 
