@@ -4,11 +4,12 @@ import home from './views/home';
 import {
   showAddNewProjectModal,
   addNewProject,
-  renderProject,
+  renderCurrentProject,
 } from './utilities/EventListners';
 import Project from './model/project';
 import Db from './data/db';
 import renderNewProject from './ui/projects/new';
+import renderAllProjects from './ui/projects/all_projects';
 
 const PageCtrl = (() => {
   // Create container to hold all the page contnets
@@ -21,12 +22,9 @@ const PageCtrl = (() => {
 
   // Render projects from the data store
   const renderProjects = () => {
-    const projects = Db.getProjects()
-    console.log(projects);
-    if (projects.lenght > 0) {
-      projects.forEach(project => {
-        renderNewProject(project);
-      });
+    const projects = new Db().getProjects()
+    if (projects.length > 0) {
+      renderAllProjects(projects);
       return;
     }
 
@@ -46,7 +44,7 @@ const PageCtrl = (() => {
       renderProjects();
       showAddNewProjectModal();
       addNewProject();
-      renderProject();
+      renderCurrentProject();
     },
   };
 })();

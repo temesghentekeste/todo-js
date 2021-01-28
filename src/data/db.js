@@ -9,7 +9,7 @@ class Db {
     return id;
   }
 
-  static getProjects() {
+  getProjects() {
     let projects;
 
     if (localStorage.getItem(this.localStorageKey) === null) {

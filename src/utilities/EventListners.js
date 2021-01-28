@@ -19,14 +19,15 @@ const addNewProject = () => {
     const name = document.querySelector('#project-name').value;
     const desc = document.querySelector('#project-description').value;
     const newProject = new Project(name, desc);
-    
+
     renderNewProject(newProject);
     newProject.save();
     projectModal.querySelector('[data-dismiss="modal"]').click();
   });
 };
 
-const renderProject = () => {
+// Render current project
+const renderCurrentProject = () => {
   const UIDivProjectsContainer = document.querySelector('#projects-container');
 
   UIDivProjectsContainer.addEventListener('click', (e) => {
@@ -44,4 +45,4 @@ const renderProject = () => {
   });
 };
 
-export { showAddNewProjectModal, addNewProject, renderProject };
+export { showAddNewProjectModal, addNewProject, renderCurrentProject };

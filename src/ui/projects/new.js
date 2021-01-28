@@ -1,5 +1,6 @@
 const renderNewProject = ({ id, name }) => {
 
+  console.log(id, name);
   const UIDivProjectsContainer = document.querySelector('#projects-container');
 
   const UIDivProjectName = document.createElement('div');
