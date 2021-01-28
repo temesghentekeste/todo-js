@@ -1,6 +1,8 @@
 import './main.scss';
 import './mobile.scss';
-import home from './pages/home';
+import home from './views/home';
+import { showAddNewProjectModal, addNewProject } from './utilities/EventListners';
+
 
 const PageCtrl = (() => {
   const createContainer = () => {
@@ -10,11 +12,12 @@ const PageCtrl = (() => {
     contentDiv.append(container);
   };
 
-  
   return {
     init() {
       createContainer();
       home();
+      showAddNewProjectModal();
+      addNewProject();
     },
   };
 })();

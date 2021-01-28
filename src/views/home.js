@@ -1,5 +1,7 @@
 import sidebar from '../components/Sidebar';
 import main from '../components/Main';
+import getProjectModal from '../components/ProjectModal';
+
 
 const home = () => {
   const container = document.querySelector('#container');
@@ -17,8 +19,9 @@ const home = () => {
   // Main: main
   UILayoutRow.appendChild(main());
 
-  
-
+  // Append project modal
+  console.log(getProjectModal());
+  container.appendChild(getProjectModal());
   container.appendChild(UILayoutDiv);
 };
 

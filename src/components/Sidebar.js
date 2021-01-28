@@ -1,4 +1,5 @@
 import { getDefaultProject, getAllProjects } from '../data/projects';
+
 const sidebar = () => {
   const UISidebar = document.createElement('aside');
   UISidebar.classList.add('col-3', 'border');
@@ -16,14 +17,20 @@ const sidebar = () => {
   sidebarHeading.textContent = 'Projects';
   UISidebar.appendChild(sidebarHeading);
 
-  // Default project
+  // Projects container
+  const UIProjectsContainer = document.createElement('div');
+  UIProjectsContainer.id = 'projects-container';
+  
+  
   const { name } = getDefaultProject();
+  // Default project
   const UIDivProjectName = document.createElement('div');
   const h4 = document.createElement('h4');
   h4.classList.add('mx-3', 'pb-2', 'border-bottom');
   h4.textContent = name;
   UIDivProjectName.append(h4);
-  UISidebar.append(UIDivProjectName);
+  UIProjectsContainer.append(UIDivProjectName);
+  UISidebar.append(UIProjectsContainer);
 
   // Add project button
   const btnAddProject = document.createElement('button');
@@ -31,13 +38,12 @@ const sidebar = () => {
   btnAddProject.classList.add('btn', 'btn-primary', 'float-right');
   btnAddProject.textContent = 'Add New Project';
 
-  // Event Listners
-  btnAddProject.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log('clicked');
-  });
+  // Set attributes
+  btnAddProject.setAttribute('data-toggle', 'modal');
+  btnAddProject.setAttribute('data-target', '#projectModal');
 
   UISidebar.append(btnAddProject);
+
   return UISidebar;
 };
 
