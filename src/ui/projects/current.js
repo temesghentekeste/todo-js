@@ -1,5 +1,5 @@
 import getProjectHeader from '../../components/ProjectHeader';
-import getTasks from '../../components/Tasks';
+import getProjectDetails from '../../components/ProjectDetails';
 import { deleteProject } from '../../utilities/projectEventListners';
 
 const currentProject = (project) => {
@@ -14,7 +14,7 @@ const currentProject = (project) => {
   const tasksContainer = document.createElement('div');
   tasksContainer.classList.add('container', 'mt-5', 'pb-2', 'mx-4');
 
-  tasksContainer.append(getTasks(tasks));
+  tasksContainer.append(getProjectDetails(tasks));
   UIMain.append(tasksContainer);
   deleteProject();
   return UIMain;
