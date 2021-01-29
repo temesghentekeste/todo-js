@@ -29,6 +29,8 @@ const PageCtrl = (() => {
     const db = new Db();
     let currentProject = db.getCurrentProject();
     currentProject = currentProject.currentProject;
+  console.log(currentProject);
+
     home(currentProject);
   }
   

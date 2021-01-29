@@ -9,6 +9,16 @@ class Project {
     this.db = new Db();
   }
 
+  getCurrentProject() {
+    let currentProject = this.db.getCurrentProject();
+    currentProject = currentProject.currentProject;
+    return currentProject;
+  }
+
+  setCurrentProject() {
+    this.currentProject = this.db.setCurrentProject(this);
+  }
+
   save() {
     this.db.saveProject(this);
   }

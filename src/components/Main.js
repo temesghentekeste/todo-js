@@ -1,6 +1,6 @@
 import Db from '../data/db';
 import getProjectHeader from './ProjectHeader';
-import getTasks from './Tasks';
+import getProjectDetails from './ProjectDetails';
 
 const main = ({ name, description, tasks }) => {
   const UIMain = document.createElement('main');
@@ -9,26 +9,21 @@ const main = ({ name, description, tasks }) => {
   // Get project header and append it to UIMain DOM element
   UIMain.append(getProjectHeader(name, description));
 
-  // Project tasks
+  // Project Details
   // Container to house the tasks
   const tasksContainer = document.createElement('div');
   tasksContainer.classList.add(
     'container',
-    'project-tasks',
+    'project-tasks-container',
     'mt-5',
     'pb-2',
     'mx-4'
   );
 
-  // Row for all the tasks
-  const projectsTasksRow = document.createElement('div');
-  projectsTasksRow.classList.add('row', 'project-tasks-row');
 
-  // Get html for all tasks (each task in separate column and card)
-  projectsTasksRow.innerHTML = getTasks(tasks);
-
-  // Append the tasks to tasksContainer
-  tasksContainer.append(projectsTasksRow);
+  // Append the tasks to tasksContainer as project details
+  const projectDetails = getProjectDetails(tasks);
+  tasksContainer.append(projectDetails);
 
   // Append the tasksContainer to the main element
   UIMain.append(tasksContainer);

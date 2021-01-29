@@ -117,28 +117,30 @@ class Db {
       },
     };
     projects.splice(0, 1, currentProject);
-    
-    if(projects.length === 1) {
+
+    if (projects.length === 1) {
       projects.push(currentProject.currentProject);
     }
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 
   saveTask(task) {
-    let project = this.getCurrentProject().currentProject;
+    let currentProject = this.getCurrentProject().currentProject;
+    currentProject.tasks.push(task);
 
-     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
-     projects.forEach((p) => {
-       if (p.id === project.id) {
-         p.tasks.push(task);
-       }
-     });
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    projects.forEach((p) => {
+      if (p.id === currentProject.id) {
+        p.tasks.push(task);
+      }
+    });
 
-     
-     console.log(projects);
-     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
+    currentProject = {
+      currentProject,
+    };
+    projects.splice(0, 1, currentProject);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
-  
 }
 
 export default Db;
