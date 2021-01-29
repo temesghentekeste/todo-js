@@ -9,6 +9,9 @@ const renderUpdatedProject = ({ id, name, description }) => {
     <p>${description}</p>
 
     <div class="d-flex align-self-end">
+      <button class="add-task-btn btn btn-success mr-2" id="btn-add-task" data-toggle="modal" data-target="#taskModal">
+        <i class="fa fa-plus"></i>Add Task
+      </button>
       <button class="update-btn btn btn-primary mr-2" id="btn-update-project" data-toggle="modal" data-target="#updateProjectModal">
         <i class="fas fa-pencil-alt mr-2"></i>Update Project
       </button>
@@ -17,7 +20,7 @@ const renderUpdatedProject = ({ id, name, description }) => {
         <i class="fas fa-trash-alt mr-2"></i>Delete Project
       </button>
     </div>`;
-    
+
   mainProjectHeader.innerHTML = html;
 };
 

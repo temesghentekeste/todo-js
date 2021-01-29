@@ -27,6 +27,20 @@ const getProjectHeader = (name, description) => {
   const btnsContainer = document.createElement('div');
   btnsContainer.classList.add('d-flex', 'align-self-end');
 
+  // Add task to project btn
+  const btnAddTask = document.createElement('button');
+  btnAddTask.classList.add('add-task-btn', 'btn', 'btn-success', 'mr-2');
+
+  btnAddTask.id = 'btn-add-task';
+  btnAddTask.innerHTML = `<i class="fas fa-plus-alt mr-2"></i>Add Task`;
+
+  // Set attributes to open add task to modal
+  btnAddTask.setAttribute('data-toggle', 'modal');
+  btnAddTask.setAttribute('data-target', '#taskModal');
+
+  // Append the update btn  to the buttonsContainer
+  btnsContainer.append(btnAddTask);
+
   // Update project btn
   const btnUpdateProject = document.createElement('button');
   btnUpdateProject.classList.add('update-btn', 'btn', 'btn-primary', 'mr-2');
