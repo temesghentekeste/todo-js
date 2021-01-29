@@ -22,6 +22,7 @@ const addNewTask = () => {
     
     let task = new Task(name, desc, date, priority)
     renderNewTask(task)
+    db.saveTask(task)
 
     taskModal.querySelector('[data-dismiss="modal"]').click();
   });

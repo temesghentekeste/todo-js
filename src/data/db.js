@@ -123,6 +123,22 @@ class Db {
     }
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
+
+  saveTask(task) {
+    let project = this.getCurrentProject().currentProject;
+
+     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+     projects.forEach((p) => {
+       if (p.id === project.id) {
+         p.tasks.push(task);
+       }
+     });
+
+     
+     console.log(projects);
+     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
+  }
+  
 }
 
 export default Db;

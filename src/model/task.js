@@ -1,4 +1,3 @@
-
 class Task {
   constructor(name, description, date, priority) {
     this.id = `task-${new Date().getTime()}`;
@@ -7,7 +6,6 @@ class Task {
     this.date = date;
     this.priority = priority;
   }
-
 }
 
 export default Task;
