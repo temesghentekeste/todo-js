@@ -3,7 +3,7 @@ import main from '../components/Main';
 import getProjectModal from '../components/ProjectModal';
 import getUpdateProjectModal from '../components/UpdateProjectModal';
 
-const home = () => {
+const home = (currentProject) => {
   
   const container = document.querySelector('#container');
   
@@ -18,7 +18,7 @@ const home = () => {
   UILayoutRow.appendChild(sidebar());
   
   // Main: main
-  UILayoutRow.appendChild(main());
+  UILayoutRow.appendChild(main(currentProject));
   
   // Append project modal: insert mode
   container.appendChild(getProjectModal());

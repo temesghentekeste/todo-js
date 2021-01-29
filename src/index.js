@@ -20,6 +20,15 @@ const PageCtrl = (() => {
     container.id = 'container';
     contentDiv.append(container);
   };
+
+  // Rendre home page
+  const renderHome = () => {
+    // Default/Current project
+    const db = new Db();
+    let currentProject = db.getCurrentProject();
+    currentProject = currentProject.currentProject;
+    home(currentProject);
+  }
   
   // Render projects from the data store
   const renderProjects = () => {
@@ -43,7 +52,7 @@ const PageCtrl = (() => {
   return {
     init() {
       createContainer();
-      home();
+      renderHome();
       renderProjects();
       addNewProject();
       renderCurrentProject();
