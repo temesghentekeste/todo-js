@@ -6,11 +6,13 @@ import {
   renderCurrentProject,
   updateProject,
   deleteProject,
-} from './utilities/EventListners';
+} from './utilities/projectEventListners';
 import Project from './model/project';
 import Db from './data/db';
 import renderNewProject from './ui/projects/new';
 import renderAllProjects from './ui/projects/all_projects';
+
+import {addNewTask} from './utilities/taskEventListners'
 
 const PageCtrl = (() => {
   // Create container to hold all the page contnets
@@ -58,6 +60,7 @@ const PageCtrl = (() => {
       renderCurrentProject();
       updateProject();
       deleteProject();
+      addNewTask()
     },
   };
 })();

@@ -1,6 +1,6 @@
 import getProjectHeader from '../../components/ProjectHeader';
 import getTasks from '../../components/Tasks';
-import { deleteProject } from '../../utilities/EventListners';
+import { deleteProject } from '../../utilities/projectEventListners';
 
 const currentProject = (project) => {
   const UIMain = document.querySelector('main');

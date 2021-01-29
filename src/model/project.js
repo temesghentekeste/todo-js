@@ -9,14 +9,6 @@ class Project {
     this.db = new Db();
   }
 
-  getCurrentProject() {
-    return this.currentProject;
-  }
-
-  setCurrentProject() {
-    this.currentProject = this.db.setCurrentProject(this);
-  }
-
   save() {
     this.db.saveProject(this);
   }
