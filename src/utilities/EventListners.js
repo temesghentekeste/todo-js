@@ -97,6 +97,7 @@ const deleteProject = () => {
 
   btnDeleteProject.addEventListener('click', (e) => {
     e.preventDefault();
+    console.log('clicked');
 
     // Get project from the datastore
     const db = new Db();
@@ -104,6 +105,9 @@ const deleteProject = () => {
 
     // Update UI to reflect deleted projec
     renderDeletedProject(deletedProject);
+
+    // Remove deleted project from the datastore (LS)
+    db.deleteProject(deletedProject);
   });
 };
 

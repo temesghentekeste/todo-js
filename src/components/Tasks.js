@@ -1,6 +1,9 @@
 import getTask from './Task';
 
 const getTasks = tasks => {
+  if(tasks === undefined) {
+    return []
+  }
   const projectsTasksRow = document.createElement('div');
   projectsTasksRow.classList.add('row');
   let html = '';

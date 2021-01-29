@@ -20,7 +20,7 @@ const PageCtrl = (() => {
     container.id = 'container';
     contentDiv.append(container);
   };
-
+  
   // Render projects from the data store
   const renderProjects = () => {
     const projects = new Db().getProjects();

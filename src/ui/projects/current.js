@@ -1,4 +1,5 @@
 import getTasks from '../../components/Tasks';
+import { deleteProject } from '../../utilities/EventListners';
 
 const currentProject = (project) => {
   const UIMain = document.querySelector('main');
@@ -29,22 +30,37 @@ const currentProject = (project) => {
   projectHeaderContainer.append(projectNameHeading);
   projectHeaderContainer.append(projectDescription);
 
+  // Container to hold buttons
+  const btnsContainer = document.createElement('div');
+  btnsContainer.classList.add('d-flex', 'align-self-end');
+
   // Update project btn
   const btnUpdateProject = document.createElement('button');
-  btnUpdateProject.id = 'btn-update-project';
+  btnUpdateProject.classList.add('update-btn', 'btn', 'btn-primary', 'mr-2');
 
-  btnUpdateProject.classList.add(
-    'update-btn',
-    'btn',
-    'btn-primary',
-    'align-self-end'
-  );
+  btnUpdateProject.id = 'btn-update-project';
   btnUpdateProject.innerHTML = `<i class="fas fa-pencil-alt mr-2"></i>Update Project`;
-  // Set attributes for Modal
+
+  // Set attributes to open Update Project Modal
   btnUpdateProject.setAttribute('data-toggle', 'modal');
   btnUpdateProject.setAttribute('data-target', '#updateProjectModal');
 
-  projectHeaderContainer.append(btnUpdateProject);
+  // Append the update btn  to the buttonsContainer
+  btnsContainer.append(btnUpdateProject);
+
+  // Delete project btn
+  const btnDeleteProject = document.createElement('button');
+  btnDeleteProject.classList.add('delete-project-btn', 'btn', 'btn-danger');
+
+  btnDeleteProject.id = 'btn-delete-project';
+  btnDeleteProject.innerHTML = `<i class="fas fa-trash-alt mr-2"></i>Delete Project`;
+
+  // Append the buttons  to the buttonsContainer
+  btnsContainer.append(btnDeleteProject);
+
+  // Append the buttons container to the projectHeaderContainer
+  projectHeaderContainer.append(btnsContainer);
+
   UIMain.append(projectHeaderContainer);
 
   // Project tasks
@@ -53,6 +69,7 @@ const currentProject = (project) => {
 
   tasksContainer.append(getTasks(tasks));
   UIMain.append(tasksContainer);
+  deleteProject();
   return UIMain;
 };
 
