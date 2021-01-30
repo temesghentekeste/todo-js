@@ -141,6 +141,10 @@ class Db {
     projects.splice(0, 1, currentProject);
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
+
+  getTask(projectId, taskId) {
+    console.log(projectId, taskId);
+  }
 }
 
 export default Db;

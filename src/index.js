@@ -12,7 +12,11 @@ import Db from './data/db';
 import renderNewProject from './ui/projects/new';
 import renderAllProjects from './ui/projects/all_projects';
 
-import {addNewTask} from './utilities/taskEventListners'
+import {
+  addNewTask,
+  openUpdateTaskModal,
+  renderUpdatedTask,
+} from './utilities/taskEventListners';
 
 const PageCtrl = (() => {
   // Create container to hold all the page contnets
@@ -31,8 +35,8 @@ const PageCtrl = (() => {
     currentProject = currentProject.currentProject;
 
     home(currentProject);
-  }
-  
+  };
+
   // Render projects from the data store
   const renderProjects = () => {
     const projects = new Db().getProjects();
@@ -61,7 +65,9 @@ const PageCtrl = (() => {
       renderCurrentProject();
       updateProject();
       deleteProject();
-      addNewTask()
+      addNewTask();
+      openUpdateTaskModal();
+      renderUpdatedTask();
     },
   };
 })();

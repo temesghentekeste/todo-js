@@ -1,8 +1,9 @@
 import sidebar from '../components/Sidebar';
 import main from '../components/Main';
 import getProjectModal from '../components/ProjectModal';
-import getTaskModal from '../components/TaskModal';
 import getUpdateProjectModal from '../components/UpdateProjectModal';
+import getTaskModal from '../components/TaskModal';
+import getUpdateTaskModal from '../components/UpdateTaskModal';
 
 const home = (currentProject) => {
   const container = document.querySelector('#container');
@@ -29,6 +30,8 @@ const home = (currentProject) => {
   // Append task modal: insert mode
   container.appendChild(getTaskModal());
 
+  // Append update task modal: update mode
+  container.appendChild(getUpdateTaskModal());
   // Append the container fluid to the main content div
   container.appendChild(UILayoutDiv);
 };
