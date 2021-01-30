@@ -9,7 +9,6 @@ const getDefaultProject = () => ({
       date: Date.now(),
       description: 'Some Description',
       priority: 1,
-      note: 'Some note',
       completed: false,
     },
     {
@@ -18,7 +17,6 @@ const getDefaultProject = () => ({
       date: Date.now(),
       description: 'Some Description',
       priority: 1,
-      note: 'Some note',
       completed: false,
     },
     {
@@ -27,7 +25,6 @@ const getDefaultProject = () => ({
       date: Date.now(),
       description: 'Some Description',
       priority: 1,
-      note: 'Some note',
       completed: false,
     },
   ],

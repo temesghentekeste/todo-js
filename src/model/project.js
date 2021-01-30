@@ -7,16 +7,20 @@ class Project {
     this.description = description;
     this.tasks = [];
     this.db = new Db();
+    this.currentProject = null;
   }
 
   getCurrentProject() {
-    let currentProject = this.db.getCurrentProject();
-    currentProject = currentProject.currentProject;
-    return currentProject;
+    this.currentProject = this.currentProject
+      ? this.currentProject
+      : this.db.getCurrentProject().currentProject;
+    return this.currentProject;
   }
 
   setCurrentProject() {
-    this.currentProject = this.db.setCurrentProject(this);
+    console.log(this);
+    this.db.setCurrentProject(this);
+    this.currentProject = this.db.getCurrentProject().currentProject;
   }
 
   save() {

@@ -1,5 +1,4 @@
 import moment from 'moment';
-const { DateTime } = require('luxon');
 
 const getTask = (task) => {
   const { id, name, description, date, priority, createdAt } = task;

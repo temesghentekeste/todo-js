@@ -1,4 +1,3 @@
-import Db from '../data/db';
 import getProjectHeader from './ProjectHeader';
 import getProjectDetails from './ProjectDetails';
 

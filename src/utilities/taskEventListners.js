@@ -56,6 +56,9 @@ const openUpdateTaskModal = () => {
       document.querySelector('#update-task-description').value = description;
       document.querySelector('#update-task-date').value = date;
       document.querySelector('#update-task-priority').value = priority;
+
+      console.log('clicked');
+      
     }
   });
 };

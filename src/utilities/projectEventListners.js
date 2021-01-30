@@ -18,9 +18,11 @@ const addNewProject = () => {
     const desc = document.querySelector('#project-description').value;
     const newProject = new Project(name, desc);
     renderNewProject(newProject);
+    currentProject(newProject);
     newProject.setCurrentProject();
     newProject.save();
 
+    // Dismiss the modal
     projectModal.querySelector('[data-dismiss="modal"]').click();
   });
 };
