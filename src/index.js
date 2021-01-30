@@ -14,6 +14,7 @@ import renderAllProjects from './ui/projects/all_projects';
 
 import {
   addNewTask,
+  deleteTask,
   openUpdateTaskModal,
   updateTask,
 } from './utilities/taskEventListners';
@@ -68,6 +69,7 @@ const PageCtrl = (() => {
       addNewTask();
       openUpdateTaskModal();
       updateTask();
+      deleteTask();
     },
   };
 })();

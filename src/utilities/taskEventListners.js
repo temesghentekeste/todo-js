@@ -2,6 +2,8 @@ import Task from '../model/task';
 import Db from '../data/db';
 import renderNewTask from '../ui/tasks/new';
 import renderUpdatedTask from '../ui/tasks/edit';
+import removeDeletedTask from '../ui/tasks/delete';
+
 const { DateTime } = require('luxon');
 
 // Task event Listners
@@ -94,4 +96,18 @@ const updateTask = () => {
   });
 };
 
-export { addNewTask, openUpdateTaskModal, updateTask };
+// Delete Task
+const deleteTask = () => {
+
+  const btnProjectDetails = document.querySelector(`.project-tasks-row`);
+
+  btnProjectDetails.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-delete-task')) {
+      const taskId = e.target.parentElement.id;
+      // Update UI to reflect deleted task
+      removeDeletedTask(taskId);
+    }
+  });
+};
+
+export { addNewTask, openUpdateTaskModal, updateTask, deleteTask };
