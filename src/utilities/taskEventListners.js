@@ -25,7 +25,6 @@ const addNewTask = () => {
     const now = DateTime.local();
 
     let task = new Task(name, desc, date, priority, now);
-    console.log(task);
     renderNewTask(task);
     db.saveTask(task);
 
@@ -64,19 +63,27 @@ const updateTask = () => {
   btnUpdateTask.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let taskName = document.querySelector('#update-task-name');
-    let taskId = taskName.getAttribute('data-id');
-    let name = taskName.value;
+    let UITaskName = document.querySelector('#update-task-name');
+    let taskId = UITaskName.getAttribute('data-id');
+    let name = UITaskName.value;
     let description = document.querySelector('#update-task-description').value;
     let date = document.querySelector('#update-task-date').value;
     let priority = document.querySelector('#update-task-priority').value;
-    let createdAt = taskName.getAttribute('created-at');
 
-    // Retrieve the created date of the current task
+    // Retrieve the createdAt field of the current task
     const db = new Db();
     const currentTask = db.getCurrentTask(taskId);
     const taskCard = document.querySelector(`.card-${taskId}`);
     taskCard.innerHTML = renderUpdatedTask(
+      taskId,
+      name,
+      description,
+      date,
+      priority,
+      currentTask.createdAt
+    );
+
+    db.updateTask(
       taskId,
       name,
       description,

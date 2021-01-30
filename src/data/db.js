@@ -1,4 +1,5 @@
 import Project from '../model/project';
+import Task from '../model/task';
 
 class Db {
   constructor() {
@@ -143,11 +144,36 @@ class Db {
   }
 
   getCurrentTask(taskId) {
-    
     let task;
     const currentProject = this.getCurrentProject().currentProject;
     task = currentProject.tasks.find((t) => t.id === taskId);
     return task;
+  }
+
+  updateTask(id, name, description, priority, date, createdAt) {
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+    const updatedProject = this.getCurrentProject().currentProject;
+
+    const updatedTask = new Task(name, description, date, priority, createdAt);
+    updatedTask.id = id;
+
+    updatedProject.tasks.forEach((task, index) => {
+      if (task.id === updatedTask.id) {
+        updatedProject.tasks.splice(index, 1, updatedTask);
+      }
+    });
+
+    projects.forEach((p, index) => {
+      if (p.id === updatedProject.id) {
+        projects.splice(index, 1, updatedProject);
+      }
+    });
+
+    let currentProject = {
+      currentProject: updatedProject,
+    };
+    projects.splice(0, 1, currentProject);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 }
 
