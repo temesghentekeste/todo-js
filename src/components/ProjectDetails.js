@@ -1,13 +1,15 @@
+import { openUpdateTaskModal } from '../utilities/taskEventListners';
 import getTask from './Task';
 
 const getProjectDetails = (tasks) => {
+  // Row for all the tasks
+  const projectsTasksRow = document.createElement('div');
+  projectsTasksRow.classList.add('row', 'project-tasks-row');
+  
   if (tasks === undefined) {
     return [];
   }
 
-  // Row for all the tasks
-  const projectsTasksRow = document.createElement('div');
-  projectsTasksRow.classList.add('row', 'project-tasks-row');
 
   // Eeach task which is a card is housed in its own column
   tasks.forEach((task) => {
@@ -16,7 +18,6 @@ const getProjectDetails = (tasks) => {
     // cardsColumn.append(getTask(task));
     projectsTasksRow.appendChild(getTask(task));
   });
-
   return projectsTasksRow;
 };
 

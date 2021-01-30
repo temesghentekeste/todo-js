@@ -38,6 +38,7 @@ const addNewTask = () => {
 const openUpdateTaskModal = () => {
   const btnProjectDetails = document.querySelector(`.project-tasks-row`);
   btnProjectDetails.addEventListener('click', (e) => {
+    console.log('clicked');
     if (e.target.getAttribute('data-target') === '#updateTaskModal') {
       const taskId = e.target.parentElement.id;
       let name = e.target.parentNode.parentNode.children[0].textContent;

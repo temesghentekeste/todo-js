@@ -4,6 +4,7 @@ import getProjectModal from '../components/ProjectModal';
 import getUpdateProjectModal from '../components/UpdateProjectModal';
 import getTaskModal from '../components/TaskModal';
 import getUpdateTaskModal from '../components/UpdateTaskModal';
+import { openUpdateTaskModal } from '../utilities/taskEventListners';
 
 const home = (currentProject) => {
   const container = document.querySelector('#container');
@@ -34,6 +35,7 @@ const home = (currentProject) => {
   container.appendChild(getUpdateTaskModal());
   // Append the container fluid to the main content div
   container.appendChild(UILayoutDiv);
+  
 };
 
 export default home;
