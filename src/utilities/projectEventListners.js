@@ -97,7 +97,6 @@ const deleteProject = () => {
 
   btnDeleteProject.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('clicked');
 
     // Get project from the datastore
     const db = new Db();

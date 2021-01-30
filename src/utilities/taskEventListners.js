@@ -30,6 +30,7 @@ const addNewTask = () => {
     renderNewTask(task);
     db.saveTask(task);
 
+    // Dismiss the modal
     taskModal.querySelector('[data-dismiss="modal"]').click();
   });
 };
@@ -59,7 +60,7 @@ const openUpdateTaskModal = () => {
   });
 };
 
-// Render updated task
+// Render updated task upon click of btnUpdateTask
 const updateTask = () => {
   const btnUpdateTask = document.querySelector('#update-task');
   btnUpdateTask.addEventListener('click', (e) => {
@@ -93,6 +94,8 @@ const updateTask = () => {
       date,
       currentTask.createdAt
     );
+    // Dismiss the modal
+    updateTaskModal.querySelector('[data-dismiss="modal"]').click();
   });
 };
 
