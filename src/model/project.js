@@ -18,7 +18,6 @@ class Project {
   }
 
   setCurrentProject() {
-    console.log(this);
     this.db.setCurrentProject(this);
     this.currentProject = this.db.getCurrentProject().currentProject;
   }

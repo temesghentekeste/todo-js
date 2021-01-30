@@ -97,7 +97,6 @@ class Db {
       currentProject: updatedProject,
     };
     projects.splice(0, 1, currentProject);
-    console.log(projects);
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 
@@ -141,6 +140,7 @@ class Db {
     };
     projects.splice(0, 1, currentProject);
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
+    return this.getCurrentTask(task.id)
   }
 
   getCurrentTask(taskId) {

@@ -1,7 +1,6 @@
-import getTask from "../../components/Task";
+import getTask from '../../components/Task';
 
 const renderNewTask = (task) => {
-
   const UITasksRow = document.querySelector('.project-tasks-row');
 
   const taskCard = getTask(task);

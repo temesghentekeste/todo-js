@@ -25,10 +25,9 @@ const addNewTask = () => {
     currentProject = currentProject.currentProject;
 
     const now = DateTime.local();
-
     let task = new Task(name, desc, date, priority, now);
+    task = db.saveTask(task);
     renderNewTask(task);
-    db.saveTask(task);
 
     // Dismiss the modal
     taskModal.querySelector('[data-dismiss="modal"]').click();
@@ -57,7 +56,6 @@ const openUpdateTaskModal = () => {
       document.querySelector('#update-task-date').value = date;
       document.querySelector('#update-task-priority').value = priority;
 
-      console.log('clicked');
       
     }
   });
