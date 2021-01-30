@@ -1,4 +1,6 @@
-const renderUpdatedTask = (id, name, description, priority, createdAt ) => 
+import moment from 'moment';
+const renderUpdatedTask = (id, name, description, priority, date, createdAt ) => {
+  console.log('clicked');
   let html = `
     <div class="card-body">
       <p>
@@ -17,5 +19,10 @@ const renderUpdatedTask = (id, name, description, priority, createdAt ) =>
       </div>
     </div>
     `;
+
+    console.log(html);
+    return html;
+
+}
 
 export default renderUpdatedTask;

@@ -142,8 +142,12 @@ class Db {
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 
-  getTask(projectId, taskId) {
-    console.log(projectId, taskId);
+  getCurrentTask(taskId) {
+    
+    let task;
+    const currentProject = this.getCurrentProject().currentProject;
+    task = currentProject.tasks.find((t) => t.id === taskId);
+    return task;
   }
 }
 

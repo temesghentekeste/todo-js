@@ -6,7 +6,7 @@ class Task {
     this.description = description;
     this.date = date;
     this.priority = priority;
-    this.createdAt = this.createdAt;
+    this.createdAt = createdAt;
   }
 }
 

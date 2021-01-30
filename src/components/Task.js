@@ -8,7 +8,7 @@ const getTask = (task) => {
   taskColumn.classList.add('col-10', 'col-lg-5', 'm-4');
 
   const card = document.createElement('div');
-  card.classList.add('card', 'text-dark', `task-card-${id}`);
+  card.classList.add('card', 'text-dark', `card-${id}`);
 
   card.innerHTML = `
   <div class="card-body">

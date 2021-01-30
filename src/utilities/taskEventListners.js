@@ -1,6 +1,7 @@
 import Task from '../model/task';
 import Db from '../data/db';
 import renderNewTask from '../ui/tasks/new';
+import renderUpdatedTask from '../ui/tasks/edit';
 const { DateTime } = require('luxon');
 
 // Task event Listners
@@ -34,7 +35,7 @@ const addNewTask = () => {
 
 // Open update task modal
 const openUpdateTaskModal = () => {
-  const btnProjectDetails = document.querySelector(`.project-tasks-row `);
+  const btnProjectDetails = document.querySelector(`.project-tasks-row`);
   btnProjectDetails.addEventListener('click', (e) => {
     if (e.target.getAttribute('data-target') === '#updateTaskModal') {
       const taskId = e.target.parentElement.id;
@@ -58,31 +59,32 @@ const openUpdateTaskModal = () => {
 };
 
 // Render updated task
-const renderUpdatedTask = () => {
+const updateTask = () => {
   const btnUpdateTask = document.querySelector('#update-task');
   btnUpdateTask.addEventListener('click', (e) => {
     e.preventDefault();
 
     let taskName = document.querySelector('#update-task-name');
-    let id = taskName.getAttribute('data-id')
+    let taskId = taskName.getAttribute('data-id');
     let name = taskName.value;
     let description = document.querySelector('#update-task-description').value;
     let date = document.querySelector('#update-task-date').value;
     let priority = document.querySelector('#update-task-priority').value;
     let createdAt = taskName.getAttribute('created-at');
-    console.log(name, priority, description, date);
 
-    const taskCard = document.querySelector(`.task-card-${id}`);
+    // Retrieve the created date of the current task
+    const db = new Db();
+    const currentTask = db.getCurrentTask(taskId);
+    const taskCard = document.querySelector(`.card-${taskId}`);
     taskCard.innerHTML = renderUpdatedTask(
-      id,
+      taskId,
       name,
       description,
       priority,
-      createdAt
+      date,
+      currentTask.createdAt
     );
-
-    console.log('clicked');
   });
 };
 
-export { addNewTask, openUpdateTaskModal, renderUpdatedTask };
+export { addNewTask, openUpdateTaskModal, updateTask };
