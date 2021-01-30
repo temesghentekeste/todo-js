@@ -17,7 +17,6 @@ const getProjectDetails = (tasks) => {
     projectsTasksRow.appendChild(getTask(task));
   });
 
-  console.log(projectsTasksRow);
   return projectsTasksRow;
 };
 
