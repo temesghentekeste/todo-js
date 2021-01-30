@@ -175,6 +175,25 @@ class Db {
     projects.splice(0, 1, currentProject);
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
+
+  deleteTask(id) {
+    const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
+
+    const updatedProject = this.getCurrentProject().currentProject;
+
+
+    updatedProject.tasks.forEach((task, index) => {
+      if (task.id === id) {
+        updatedProject.tasks.splice(index, 1);
+      }
+    });
+
+    let currentProject = {
+      currentProject: updatedProject,
+    };
+    projects.splice(0, 1, currentProject);
+    localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
+  }
 }
 
 export default Db;

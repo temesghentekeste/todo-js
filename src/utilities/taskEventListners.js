@@ -106,6 +106,12 @@ const deleteTask = () => {
       const taskId = e.target.parentElement.id;
       // Update UI to reflect deleted task
       removeDeletedTask(taskId);
+
+      // Get project from the datastore
+      const db = new Db();
+
+      // Remove deleted project from the datastore (LS)
+      db.deleteTask(taskId);
     }
   });
 };
