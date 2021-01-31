@@ -16,11 +16,6 @@ const sidebar = () => {
   sidebarHeading.textContent = 'Projects';
   UISidebar.appendChild(sidebarHeading);
 
-  // Projects container
-  const UIProjectsContainer = document.createElement('div');
-  UIProjectsContainer.id = 'projects-container';
-  UISidebar.append(UIProjectsContainer);
-
   // Add project button
   const btnAddProject = document.createElement('button');
   btnAddProject.id = 'btn-add-project';
@@ -31,7 +26,11 @@ const sidebar = () => {
   btnAddProject.setAttribute('data-toggle', 'modal');
   btnAddProject.setAttribute('data-target', '#projectModal');
 
-  UISidebar.append(btnAddProject);
+  sidebarHeading.append(btnAddProject);
+  // Projects container
+  const UIProjectsContainer = document.createElement('div');
+  UIProjectsContainer.id = 'projects-container';
+  UISidebar.append(UIProjectsContainer);
 
   return UISidebar;
 };

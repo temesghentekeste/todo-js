@@ -3,6 +3,7 @@ import Db from '../data/db';
 import renderNewTask from '../ui/tasks/new';
 import renderUpdatedTask from '../ui/tasks/edit';
 import removeDeletedTask from '../ui/tasks/delete';
+import {resetAddTaskModal, resetUpdateTaskModal} from '../../utilities/reset_task_modal'
 
 const { DateTime } = require('luxon');
 
@@ -29,6 +30,8 @@ const addNewTask = () => {
     task = db.saveTask(task);
     renderNewTask(task);
 
+    // Reset add task modal
+    resetAddTaskModal();
     // Dismiss the modal
     taskModal.querySelector('[data-dismiss="modal"]').click();
   });
@@ -96,6 +99,9 @@ const updateTask = () => {
       date,
       currentTask.createdAt
     );
+
+    // Reset update task modal
+    resetUpdateTaskModal();
     // Dismiss the modal
     updateTaskModal.querySelector('[data-dismiss="modal"]').click();
   });

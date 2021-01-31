@@ -6,6 +6,10 @@ import renderDeletedProject from '../ui/projects/delete';
 import currentProject from '../ui/projects/current';
 import renderAllProjects from '../ui/projects/all_projects';
 import setCurrentProjectStyle from '../../utilities/current_style';
+import {
+  resetAddProjectModal,
+  resetUpdateProjectModal,
+} from '../../utilities/reset_project_modal';
 
 // Event Listners
 
@@ -26,6 +30,8 @@ const addNewProject = () => {
     // Style current project on the UI
     setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
 
+    // Reset Modal
+     resetAddProjectModal();
     // Dismiss the modal
     projectModal.querySelector('[data-dismiss="modal"]').click();
   });
@@ -83,6 +89,9 @@ const updateProject = () => {
     // Persist updated project in the datastore (LS)
     db.updateProject(updatedProject);
 
+    // Reset project modal
+    resetUpdateProjectModal();
+    
     // Dismiss the modal
     updateProjectModal.querySelector('[data-dismiss="modal"]').click();
   });
