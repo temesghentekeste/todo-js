@@ -97,7 +97,8 @@ const updateProject = () => {
 
 const deleteProject = () => {
   const btnDeleteProject = document.querySelector('#btn-delete-project');
-
+  
+  console.log('deleted', btnDeleteProject);
   btnDeleteProject.addEventListener('click', (e) => {
     e.preventDefault();
 

@@ -5,23 +5,11 @@ const renderUpdatedProject = ({ id, name, description }) => {
   project.innerHTML = html;
 
   const mainProjectHeader = document.querySelector('.main-project-header');
-  html = `<h1>${name}</h1>
-    <p>${description}</p>
-
-    <div class="d-flex align-self-end">
-      <button class="add-task-btn btn btn-success mr-2" id="btn-add-task" data-toggle="modal" data-target="#taskModal">
-        <i class="fa fa-plus"></i>Add Task
-      </button>
-      <button class="update-btn btn btn-primary mr-2" id="btn-update-project" data-toggle="modal" data-target="#updateProjectModal">
-        <i class="fas fa-pencil-alt mr-2"></i>Update Project
-      </button>
-      
-      <button class="delete-project-btn btn btn-danger" id="btn-delete-project">
-        <i class="fas fa-trash-alt mr-2"></i>Delete Project
-      </button>
-    </div>`;
-
-  mainProjectHeader.innerHTML = html;
+  const h1 = mainProjectHeader.querySelector('h1');
+  const p = mainProjectHeader.querySelector('p');
+  console.log(h1, p);
+  h1.textContent = name;
+  p.textContent = description;
 };
 
 export default renderUpdatedProject;

@@ -57,7 +57,7 @@ const getProjectHeader = (name, description) => {
 
   // Delete project btn
   const btnDeleteProject = document.createElement('button');
-  btnDeleteProject.classList.add('delete-project-btn', 'btn', 'btn-danger');
+  btnDeleteProject.classList.add('btn-delete-project', 'btn', 'btn-danger');
 
   btnDeleteProject.id = 'btn-delete-project';
   btnDeleteProject.innerHTML = `<i class="fas fa-trash-alt mr-2"></i>Delete Project`;

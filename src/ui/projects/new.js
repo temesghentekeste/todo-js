@@ -3,7 +3,7 @@ const renderNewProject = ({ id, name }) => {
   const UIDivProjectsContainer = document.querySelector('#projects-container');
 
   const UIDivProjectName = document.createElement('div');
-  UIDivProjectName.classList.add('project');
+  UIDivProjectName.classList.add('project', 'current');
   UIDivProjectName.setAttribute('id', id);
 
   const h4 = document.createElement('h4');

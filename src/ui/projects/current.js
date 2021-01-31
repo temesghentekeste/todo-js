@@ -1,7 +1,10 @@
 import getProjectHeader from '../../components/ProjectHeader';
 import getProjectDetails from '../../components/ProjectDetails';
-import { deleteProject } from '../../utilities/projectEventListners';
-import { deleteTask, openUpdateTaskModal } from '../../utilities/taskEventListners';
+import { deleteProject, updateProject } from '../../event_listners/projectEventListners';
+import {
+  deleteTask,
+  openUpdateTaskModal,
+} from '../../event_listners/taskEventListners';
 
 const currentProject = (project) => {
   const UIMain = document.querySelector('main');
@@ -18,6 +21,7 @@ const currentProject = (project) => {
   tasksContainer.append(getProjectDetails(tasks));
   UIMain.append(tasksContainer);
   deleteProject();
+  updateProject();
   openUpdateTaskModal();
   deleteTask();
   return UIMain;

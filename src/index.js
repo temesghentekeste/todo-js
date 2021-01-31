@@ -6,7 +6,7 @@ import {
   renderCurrentProject,
   updateProject,
   deleteProject,
-} from './utilities/projectEventListners';
+} from './event_listners/projectEventListners';
 import Project from './model/project';
 import Db from './data/db';
 import renderNewProject from './ui/projects/new';
@@ -17,7 +17,7 @@ import {
   deleteTask,
   openUpdateTaskModal,
   updateTask,
-} from './utilities/taskEventListners';
+} from './event_listners/taskEventListners';
 
 const PageCtrl = (() => {
   // Create container to hold all the page contnets
