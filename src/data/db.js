@@ -121,6 +121,14 @@ class Db {
     if (projects.length === 1) {
       projects.push(currentProject.currentProject);
     }
+
+    if (projects.length > 1) {
+      currentProject = {
+        currentProject: projects[1]
+      }
+
+      projects[0] = currentProject;
+    }
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 
