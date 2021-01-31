@@ -1,4 +1,3 @@
-import { openUpdateTaskModal } from '../utilities/taskEventListners';
 import getTask from './Task';
 
 const getProjectDetails = (tasks) => {
