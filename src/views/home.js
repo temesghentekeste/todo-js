@@ -34,7 +34,6 @@ const home = (currentProject) => {
   container.appendChild(getUpdateTaskModal());
   // Append the container fluid to the main content div
   container.appendChild(UILayoutDiv);
-  
 };
 
 export default home;

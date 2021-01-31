@@ -1,11 +1,13 @@
 import getProjectHeader from '../../components/ProjectHeader';
 import getProjectDetails from '../../components/ProjectDetails';
-import { deleteProject, updateProject } from '../../event_listners/projectEventListners';
+import {
+  deleteProject,
+  updateProject,
+} from '../../event_listners/projectEventListners';
 import {
   deleteTask,
   openUpdateTaskModal,
 } from '../../event_listners/taskEventListners';
-
 
 const currentProject = (project) => {
   const UIMain = document.querySelector('main');

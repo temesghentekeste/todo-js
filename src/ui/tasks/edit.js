@@ -1,13 +1,14 @@
 import moment from 'moment';
+
 const renderUpdatedTask = (
   id,
   name,
   description,
   date,
   priority,
-  createdAt
+  createdAt,
 ) => {
-  let html = `
+  const html = `
     <div class="card-body">
       <p>
         <button class="btn btn-success btn-block card-title font-weight-bold text-left text-uppercase" type="button" data-toggle="collapse" data-target="#${id}" aria-expanded="false" aria-controls="collapseExample">

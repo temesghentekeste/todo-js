@@ -1,7 +1,9 @@
 import moment from 'moment';
 
 const getTask = (task) => {
-  const { id, name, description, date, priority, createdAt } = task;
+  const {
+    id, name, description, date, priority, createdAt,
+  } = task;
 
   const taskColumn = document.createElement('div');
   taskColumn.classList.add('col-10', 'col-lg-5', 'm-4');

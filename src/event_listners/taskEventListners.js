@@ -3,7 +3,10 @@ import Db from '../data/db';
 import renderNewTask from '../ui/tasks/new';
 import renderUpdatedTask from '../ui/tasks/edit';
 import removeDeletedTask from '../ui/tasks/delete';
-import {resetAddTaskModal, resetUpdateTaskModal} from '../../utilities/reset_task_modal'
+import {
+  resetAddTaskModal,
+  resetUpdateTaskModal,
+} from '../../utilities/reset_task_modal';
 
 const { DateTime } = require('luxon');
 
@@ -21,35 +24,38 @@ const addNewTask = () => {
     const date = document.querySelector('#task-date').value;
     const priority = document.querySelector('#task-priority').value;
 
-    const db = new Db();
-    let currentProject = db.getCurrentProject();
-    currentProject = currentProject.currentProject;
-
     const now = DateTime.local();
     let task = new Task(name, desc, date, priority, now);
+    // Validate task
+    if (!task.validate()) {
+      return false;
+    }
+
+    const db = new Db();
     task = db.saveTask(task);
     renderNewTask(task);
 
     // Reset add task modal
     resetAddTaskModal();
     // Dismiss the modal
+    const taskModal = document.querySelector('#taskModal');
     taskModal.querySelector('[data-dismiss="modal"]').click();
+    return true;
   });
 };
 
 // Open update task modal
 const openUpdateTaskModal = () => {
-  const btnProjectDetails = document.querySelector(`.project-tasks-row`);
+  const btnProjectDetails = document.querySelector('.project-tasks-row');
   btnProjectDetails.addEventListener('click', (e) => {
-    console.log('clicked');
     if (e.target.getAttribute('data-target') === '#updateTaskModal') {
       const taskId = e.target.parentElement.id;
       let name = e.target.parentNode.parentNode.children[0].textContent;
       name = name.trim().toUpperCase();
-      let priority = e.target.parentNode.children[0].textContent;
-      let description = e.target.parentNode.children[1].textContent;
-      let date = e.target.parentNode.children[2].textContent;
-      let createdAt = e.target.parentNode.children[3].textContent;
+      const priority = e.target.parentNode.children[0].textContent;
+      const description = e.target.parentNode.children[1].textContent;
+      const date = e.target.parentNode.children[2].textContent;
+      const createdAt = e.target.parentNode.children[3].textContent;
 
       const taskName = document.querySelector('#update-task-name');
       taskName.value = name.trim().toUpperCase();
@@ -59,8 +65,6 @@ const openUpdateTaskModal = () => {
       document.querySelector('#update-task-description').value = description;
       document.querySelector('#update-task-date').value = date;
       document.querySelector('#update-task-priority').value = priority;
-
-      
     }
   });
 };
@@ -71,13 +75,21 @@ const updateTask = () => {
   btnUpdateTask.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let UITaskName = document.querySelector('#update-task-name');
-    let taskId = UITaskName.getAttribute('data-id');
-    let name = UITaskName.value;
-    let description = document.querySelector('#update-task-description').value;
-    let date = document.querySelector('#update-task-date').value;
-    let priority = document.querySelector('#update-task-priority').value;
+    const UITaskName = document.querySelector('#update-task-name');
+    const taskId = UITaskName.getAttribute('data-id');
+    const name = UITaskName.value;
+    const description = document.querySelector('#update-task-description')
+      .value;
+    const date = document.querySelector('#update-task-date').value;
+    const priority = document.querySelector('#update-task-priority').value;
 
+    // Validate task
+    const now = DateTime.local();
+    const task = new Task(name, description, date, priority, now);
+
+    if (!task.validate()) {
+      return false;
+    }
     // Retrieve the createdAt field of the current task
     const db = new Db();
     const currentTask = db.getCurrentTask(taskId);
@@ -88,7 +100,7 @@ const updateTask = () => {
       description,
       date,
       priority,
-      currentTask.createdAt
+      currentTask.createdAt,
     );
 
     db.updateTask(
@@ -97,20 +109,21 @@ const updateTask = () => {
       description,
       priority,
       date,
-      currentTask.createdAt
+      currentTask.createdAt,
     );
 
     // Reset update task modal
     resetUpdateTaskModal();
     // Dismiss the modal
+    const updateTaskModal = document.querySelector('#updateTaskModal');
     updateTaskModal.querySelector('[data-dismiss="modal"]').click();
+    return true;
   });
 };
 
 // Delete Task
 const deleteTask = () => {
-
-  const btnProjectDetails = document.querySelector(`.project-tasks-row`);
+  const btnProjectDetails = document.querySelector('.project-tasks-row');
 
   btnProjectDetails.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-delete-task')) {
@@ -127,4 +140,6 @@ const deleteTask = () => {
   });
 };
 
-export { addNewTask, openUpdateTaskModal, updateTask, deleteTask };
+export {
+  addNewTask, openUpdateTaskModal, updateTask, deleteTask,
+};

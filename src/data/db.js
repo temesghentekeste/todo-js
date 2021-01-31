@@ -1,4 +1,3 @@
-import Project from '../model/project';
 import Task from '../model/task';
 
 class Db {
@@ -8,8 +7,7 @@ class Db {
 
   getProject(id) {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
-    let project;
-    project = projects.find((p) => p.id === id);
+    const project = projects.find((p) => p.id === id);
 
     return project;
   }
@@ -25,7 +23,9 @@ class Db {
     return projects;
   }
 
-  saveProject({ id, name, description, tasks }) {
+  saveProject({
+    id, name, description, tasks,
+  }) {
     let projects;
 
     const newProject = {
@@ -35,7 +35,7 @@ class Db {
       tasks,
     };
 
-    let currentProject = {
+    const currentProject = {
       currentProject: newProject,
     };
 
@@ -77,7 +77,7 @@ class Db {
 
   setCurrentProject(project) {
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
-    let currentProject = {
+    const currentProject = {
       currentProject: project,
     };
     projects.splice(0, 1, currentProject);
@@ -93,7 +93,7 @@ class Db {
       }
     });
 
-    let currentProject = {
+    const currentProject = {
       currentProject: updatedProject,
     };
     projects.splice(0, 1, currentProject);
@@ -124,15 +124,15 @@ class Db {
 
     if (projects.length > 1) {
       currentProject = {
-        currentProject: projects[1]
-      }
+        currentProject: projects[1],
+      };
       projects[0] = currentProject;
     }
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
   }
 
   saveTask(task) {
-    let currentProject = this.getCurrentProject().currentProject;
+    let { currentProject } = this.getCurrentProject();
     currentProject.tasks.push(task);
 
     const projects = JSON.parse(localStorage.getItem(this.localStorageKey));
@@ -147,13 +147,12 @@ class Db {
     };
     projects.splice(0, 1, currentProject);
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
-    return this.getCurrentTask(task.id)
+    return this.getCurrentTask(task.id);
   }
 
   getCurrentTask(taskId) {
-    let task;
-    const currentProject = this.getCurrentProject().currentProject;
-    task = currentProject.tasks.find((t) => t.id === taskId);
+    const { currentProject } = this.getCurrentProject();
+    const task = currentProject.tasks.find((t) => t.id === taskId);
     return task;
   }
 
@@ -176,7 +175,7 @@ class Db {
       }
     });
 
-    let currentProject = {
+    const currentProject = {
       currentProject: updatedProject,
     };
     projects.splice(0, 1, currentProject);
@@ -188,14 +187,13 @@ class Db {
 
     const updatedProject = this.getCurrentProject().currentProject;
 
-
     updatedProject.tasks.forEach((task, index) => {
       if (task.id === id) {
         updatedProject.tasks.splice(index, 1);
       }
     });
 
-    let currentProject = {
+    const currentProject = {
       currentProject: updatedProject,
     };
     projects.splice(0, 1, currentProject);

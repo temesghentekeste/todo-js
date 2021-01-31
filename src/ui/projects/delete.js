@@ -7,7 +7,7 @@ const removeDeletedTask = ({ id }) => {
 
   const mainProjectHeader = document.querySelector('.main-project-header');
   mainProjectHeader.innerHTML = '';
-  
+
   const UITasksRow = document.querySelector('.project-tasks-row');
   UITasksRow.innerHTML = '';
 };

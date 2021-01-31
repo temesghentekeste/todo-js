@@ -3,7 +3,7 @@ import Db from '../data/db';
 import renderNewProject from '../ui/projects/new';
 import renderUpdatedProject from '../ui/projects/edit';
 import renderDeletedProject from '../ui/projects/delete';
-import currentProject from '../ui/projects/current';
+// import currentProject from '../ui/projects/current';
 import renderAllProjects from '../ui/projects/all_projects';
 import setCurrentProjectStyle from '../../utilities/current_style';
 import {
@@ -11,66 +11,16 @@ import {
   resetUpdateProjectModal,
 } from '../../utilities/reset_project_modal';
 
-// Event Listners
-
-// Add new project on modal save button click
-const addNewProject = () => {
-  const btnAddNewProject = document.querySelector('#add-project');
-
-  btnAddNewProject.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const name = document.querySelector('#project-name').value;
-    const desc = document.querySelector('#project-description').value;
-    const newProject = new Project(name, desc);
-    renderNewProject(newProject);
-    currentProject(newProject);
-    newProject.setCurrentProject();
-    newProject.save();
-    // Style current project on the UI
-    setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
-
-    // Reset Modal
-     resetAddProjectModal();
-    // Dismiss the modal
-    projectModal.querySelector('[data-dismiss="modal"]').click();
-  });
-};
-
-// Render current project
-const renderCurrentProject = () => {
-  const UIDivProjectsContainer = document.querySelector('#projects-container');
-
-  UIDivProjectsContainer.addEventListener('click', (e) => {
-    const selectedProject = e.target;
-    const projectName = selectedProject.parentElement;
-    let id = projectName.getAttribute('id');
-
-    if (id === null) {
-      return;
-    }
-
-    const db = new Db();
-    const project = db.getProject(id);
-    if (project !== undefined) {
-      currentProject(project);
-      db.setCurrentProject(project);
-      const UIProjectName = document.querySelector('#update-project-name');
-      const UIProjDes = document.querySelector('#update-project-description');
-
-      // Prepare update project modal for updating
-      UIProjectName.value = project.name;
-      UIProjDes.value = project.description;
-
-      // Style current project on the UI
-      setCurrentProjectStyle(id);
-    }
-  });
-};
+import getProjectHeader from '../components/ProjectHeader';
+import getProjectDetails from '../components/ProjectDetails';
+import {
+  deleteTask,
+  openUpdateTaskModal,
+} from './taskEventListners';
 
 const updateProject = () => {
-  let btnUpdateProject = document.querySelector('#update-project');
-  let btnUpdateDefaultProject = document.querySelector('#btn-update-project');
+  const btnUpdateProject = document.querySelector('#update-project');
+  const btnUpdateDefaultProject = document.querySelector('#btn-update-project');
 
   btnUpdateProject.addEventListener('click', (e) => {
     e.preventDefault();
@@ -78,8 +28,14 @@ const updateProject = () => {
     const name = document.querySelector('#update-project-name').value;
     const desc = document.querySelector('#update-project-description').value;
 
+    const project = new Project(name, desc);
+    // Validate project input data
+    if (!project.validate()) {
+      return;
+    }
+
     const db = new Db();
-    let updatedProject = db.getCurrentProject().currentProject;
+    const updatedProject = db.getCurrentProject().currentProject;
     updatedProject.name = name;
     updatedProject.description = desc;
 
@@ -91,14 +47,16 @@ const updateProject = () => {
 
     // Reset project modal
     resetUpdateProjectModal();
-    
+
     // Dismiss the modal
+    const updateProjectModal = document.querySelector('#updateProjectModal');
     updateProjectModal.querySelector('[data-dismiss="modal"]').click();
   });
 
   btnUpdateDefaultProject.addEventListener('click', (e) => {
+    console.log('called');
     const db = new Db();
-    const currentProject = db.getCurrentProject().currentProject;
+    const { currentProject } = db.getCurrentProject();
     e.preventDefault();
 
     const UIProjectName = document.querySelector('#update-project-name');
@@ -131,7 +89,7 @@ const deleteProject = () => {
 
     // Render all projects on the projects container div
     const UIDivProjectsContainer = document.querySelector(
-      '#projects-container'
+      '#projects-container',
     );
     if (UIDivProjectsContainer.childElementCount === 0) {
       const projects = db.getProjects();
@@ -143,4 +101,97 @@ const deleteProject = () => {
   });
 };
 
-export { addNewProject, renderCurrentProject, updateProject, deleteProject };
+const currentProject = (project) => {
+  const UIMain = document.querySelector('main');
+  UIMain.innerHTML = '';
+  const { name, description, tasks } = project;
+
+  // Get project header and append it to UIMain DOM element
+  UIMain.append(getProjectHeader(name, description));
+
+  // Project tasks
+  const tasksContainer = document.createElement('div');
+  tasksContainer.classList.add('container', 'mt-5', 'pb-2', 'mx-4');
+
+  tasksContainer.append(getProjectDetails(tasks));
+  UIMain.append(tasksContainer);
+
+  deleteProject();
+  updateProject();
+  openUpdateTaskModal();
+  deleteTask();
+  return UIMain;
+};
+// Event Listners
+
+// Add new project on modal save button click
+const addNewProject = () => {
+  const btnAddNewProject = document.querySelector('#add-project');
+
+  btnAddNewProject.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const name = document.querySelector('#project-name').value;
+    const desc = document.querySelector('#project-description').value;
+
+    const newProject = new Project(name, desc);
+
+    // Validate project input data
+    if (!newProject.validate()) {
+      return;
+    }
+
+    renderNewProject(newProject);
+    currentProject(newProject);
+    newProject.setCurrentProject();
+    newProject.save();
+    // Style current project on the UI
+    setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
+
+    // Reset Modal
+    resetAddProjectModal();
+
+    // Dismiss the modal
+    const projectModal = document.querySelector('#projectModal');
+    projectModal.querySelector('[data-dismiss="modal"]').click();
+  });
+};
+
+// Render current project
+const renderCurrentProject = () => {
+  const UIDivProjectsContainer = document.querySelector('#projects-container');
+
+  UIDivProjectsContainer.addEventListener('click', (e) => {
+    const selectedProject = e.target;
+    const projectName = selectedProject.parentElement;
+    const id = projectName.getAttribute('id');
+
+    if (id === null) {
+      return;
+    }
+
+    const db = new Db();
+    const project = db.getProject(id);
+    if (project !== undefined) {
+      currentProject(project);
+      db.setCurrentProject(project);
+      const UIProjectName = document.querySelector('#update-project-name');
+      const UIProjDes = document.querySelector('#update-project-description');
+
+      // Prepare update project modal for updating
+      UIProjectName.value = project.name;
+      UIProjDes.value = project.description;
+
+      // Style current project on the UI
+      setCurrentProjectStyle(id);
+    }
+  });
+};
+
+export {
+  addNewProject,
+  renderCurrentProject,
+  updateProject,
+  deleteProject,
+  currentProject,
+};

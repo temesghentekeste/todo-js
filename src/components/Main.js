@@ -16,15 +16,13 @@ const main = ({ name, description, tasks }) => {
     'project-tasks-container',
     'mt-5',
     'pb-2',
-    'mx-4'
+    'mx-4',
   );
-
 
   // Append the tasks to tasksContainer as project details
   const projectDetails = getProjectDetails(tasks);
   tasksContainer.append(projectDetails);
 
- 
   // Append the tasksContainer to the main element
   UIMain.append(tasksContainer);
   return UIMain;

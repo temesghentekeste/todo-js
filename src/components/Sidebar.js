@@ -1,4 +1,3 @@
-
 const sidebar = () => {
   const UISidebar = document.createElement('aside');
   UISidebar.classList.add('col-3', 'border');
@@ -9,7 +8,7 @@ const sidebar = () => {
     'pb-2',
     'mx-2',
     'border-bottom',
-    'font-weight-bold'
+    'font-weight-bold',
   );
 
   // Projects

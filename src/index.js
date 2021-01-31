@@ -43,7 +43,7 @@ const PageCtrl = (() => {
   const renderProjects = () => {
     const projects = new Db().getProjects();
     if (projects.length > 0) {
-      renderAllProjects(projects)
+      renderAllProjects(projects);
       return;
     }
 
@@ -51,7 +51,7 @@ const PageCtrl = (() => {
     const defaultProject = new Project(
       'Default Project',
       'Default Project Description',
-      []
+      [],
     );
 
     renderNewProject(defaultProject);
@@ -65,6 +65,7 @@ const PageCtrl = (() => {
       renderProjects();
       addNewProject();
       renderCurrentProject();
+
       updateProject();
       deleteProject();
       addNewTask();

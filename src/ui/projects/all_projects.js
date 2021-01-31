@@ -5,7 +5,7 @@ const renderAllProjects = (projects) => {
     const { id, name } = project;
     if (id !== undefined) {
       const UIDivProjectName = document.createElement('div');
-      UIDivProjectName.classList.add('project','border-bottom', 'py-2');
+      UIDivProjectName.classList.add('project', 'border-bottom', 'py-2');
       UIDivProjectName.setAttribute('id', id);
 
       const h4 = document.createElement('h4');
