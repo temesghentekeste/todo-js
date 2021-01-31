@@ -32,7 +32,7 @@ const getProjectHeader = (name, description) => {
   btnAddTask.classList.add('add-task-btn', 'btn', 'btn-success', 'mr-2');
 
   btnAddTask.id = 'btn-add-task';
-  btnAddTask.innerHTML = '<i class="fas fa-plus-alt mr-2"></i>Add Task';
+  btnAddTask.innerHTML = '<i class="fas fa-plus mr-2"></i>Add Task';
 
   // Set attributes to open add task to modal
   btnAddTask.setAttribute('data-toggle', 'modal');

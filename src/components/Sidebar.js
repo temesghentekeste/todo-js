@@ -8,7 +8,7 @@ const sidebar = () => {
     'pb-2',
     'mx-2',
     'border-bottom',
-    'font-weight-bold',
+    'font-weight-bold'
   );
 
   // Projects
@@ -18,8 +18,8 @@ const sidebar = () => {
   // Add project button
   const btnAddProject = document.createElement('button');
   btnAddProject.id = 'btn-add-project';
-  btnAddProject.classList.add('btn', 'btn-primary', 'float-right');
-  btnAddProject.textContent = 'Add New Project';
+  btnAddProject.classList.add('btn', 'btn-success', 'float-right');
+  btnAddProject.innerHTML = '<i class="fas fa-plus mr-2"></i>Add Project';
 
   // Set attributes
   btnAddProject.setAttribute('data-toggle', 'modal');
