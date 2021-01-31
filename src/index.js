@@ -18,6 +18,7 @@ import {
   openUpdateTaskModal,
   updateTask,
 } from './event_listners/taskEventListners';
+import setCurrentProjectStyle from '../utilities/current_style';
 
 const PageCtrl = (() => {
   // Create container to hold all the page contnets
@@ -70,6 +71,8 @@ const PageCtrl = (() => {
       openUpdateTaskModal();
       updateTask();
       deleteTask();
+      // Style current project on the UI
+      setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
     },
   };
 })();

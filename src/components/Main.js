@@ -21,7 +21,6 @@ const main = ({ name, description, tasks }) => {
 
 
   // Append the tasks to tasksContainer as project details
-  console.log(getProjectDetails(tasks));
   const projectDetails = getProjectDetails(tasks);
   tasksContainer.append(projectDetails);
 

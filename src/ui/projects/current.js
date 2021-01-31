@@ -6,6 +6,7 @@ import {
   openUpdateTaskModal,
 } from '../../event_listners/taskEventListners';
 
+
 const currentProject = (project) => {
   const UIMain = document.querySelector('main');
   UIMain.innerHTML = '';
@@ -20,6 +21,7 @@ const currentProject = (project) => {
 
   tasksContainer.append(getProjectDetails(tasks));
   UIMain.append(tasksContainer);
+
   deleteProject();
   updateProject();
   openUpdateTaskModal();

@@ -5,6 +5,7 @@ import renderUpdatedProject from '../ui/projects/edit';
 import renderDeletedProject from '../ui/projects/delete';
 import currentProject from '../ui/projects/current';
 import renderAllProjects from '../ui/projects/all_projects';
+import setCurrentProjectStyle from '../../utilities/current_style';
 
 // Event Listners
 
@@ -22,6 +23,8 @@ const addNewProject = () => {
     currentProject(newProject);
     newProject.setCurrentProject();
     newProject.save();
+    // Style current project on the UI
+    setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
 
     // Dismiss the modal
     projectModal.querySelector('[data-dismiss="modal"]').click();
@@ -52,6 +55,9 @@ const renderCurrentProject = () => {
       // Prepare update project modal for updating
       UIProjectName.value = project.name;
       UIProjDes.value = project.description;
+
+      // Style current project on the UI
+      setCurrentProjectStyle(id);
     }
   });
 };
@@ -97,8 +103,7 @@ const updateProject = () => {
 
 const deleteProject = () => {
   const btnDeleteProject = document.querySelector('#btn-delete-project');
-  
-  console.log('deleted', btnDeleteProject);
+
   btnDeleteProject.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -119,10 +124,13 @@ const deleteProject = () => {
     const UIDivProjectsContainer = document.querySelector(
       '#projects-container'
     );
-    if(UIDivProjectsContainer.childElementCount === 0) {
+    if (UIDivProjectsContainer.childElementCount === 0) {
       const projects = db.getProjects();
       renderAllProjects(projects);
     }
+
+    // Style current project on the UI
+    setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
   });
 };
 
