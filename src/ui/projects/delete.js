@@ -1,5 +1,8 @@
 const removeDeletedTask = ({ id }) => {
   const project = document.querySelector(`#${id}`);
+  if (project === null || id === undefined) {
+    return;
+  }
   project.remove();
 
   const mainProjectHeader = document.querySelector('.main-project-header');

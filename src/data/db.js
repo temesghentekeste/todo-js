@@ -118,7 +118,7 @@ class Db {
     };
     projects.splice(0, 1, currentProject);
 
-    if (projects.length === 1) {
+    if (projects.length <= 1) {
       projects.push(currentProject.currentProject);
     }
 
@@ -126,7 +126,6 @@ class Db {
       currentProject = {
         currentProject: projects[1]
       }
-
       projects[0] = currentProject;
     }
     localStorage.setItem(this.localStorageKey, JSON.stringify(projects));

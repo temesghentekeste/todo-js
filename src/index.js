@@ -42,7 +42,7 @@ const PageCtrl = (() => {
   const renderProjects = () => {
     const projects = new Db().getProjects();
     if (projects.length > 0) {
-      renderAllProjects(projects);
+      renderAllProjects(projects)
       return;
     }
 
