@@ -1,6 +1,6 @@
 import './main.scss';
-import './mobile.scss';
 import home from './views/home';
+import getFooter from './components/Footer'
 import {
   addNewProject,
   renderCurrentProject,
@@ -58,6 +58,12 @@ const PageCtrl = (() => {
     defaultProject.save();
   };
 
+  // Set Footer
+  const setFooter = () => {
+    const contentDiv = document.querySelector('#content');
+    contentDiv.appendChild(getFooter())
+  }
+
   return {
     init() {
       createContainer();
@@ -74,6 +80,7 @@ const PageCtrl = (() => {
       deleteTask();
       // Style current project on the UI
       setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
+      setFooter();
     },
   };
 })();

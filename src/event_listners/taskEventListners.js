@@ -106,7 +106,7 @@ const updateTask = () => {
       description,
       date,
       priority,
-      currentTask.createdAt
+      currentTask.createdAt,
     );
 
     db.updateTask(
@@ -115,7 +115,7 @@ const updateTask = () => {
       description,
       priority,
       date,
-      currentTask.createdAt
+      currentTask.createdAt,
     );
 
     // Reset update task modal
@@ -145,4 +145,6 @@ const deleteTask = () => {
   });
 };
 
-export { addNewTask, openUpdateTaskModal, updateTask, deleteTask };
+export {
+  addNewTask, openUpdateTaskModal, updateTask, deleteTask,
+};

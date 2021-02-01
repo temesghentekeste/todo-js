@@ -57,7 +57,6 @@ const updateProject = () => {
   });
 
   btnUpdateDefaultProject.addEventListener('click', (e) => {
-    console.log('called');
     const db = new Db();
     const { currentProject } = db.getCurrentProject();
     e.preventDefault();
@@ -88,6 +87,7 @@ const deleteProject = () => {
     db.deleteProject(deletedProject);
 
     const project = db.getCurrentProject().currentProject;
+    // eslint-disable-next-line no-use-before-define
     currentProject(project);
 
     // Render all projects on the projects container div
@@ -143,7 +143,6 @@ const addNewProject = () => {
     const projectModal = document.querySelector('#projectModal');
     // Validate project input data
     if (!newProject.validate()) {
-      console.log('reached');
       projectModal.prepend(getAlertMessage());
       return;
     }

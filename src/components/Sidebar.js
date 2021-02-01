@@ -1,6 +1,6 @@
 const sidebar = () => {
   const UISidebar = document.createElement('aside');
-  UISidebar.classList.add('col-3', 'border');
+  UISidebar.classList.add('col-3', 'border', 'border-bottom-0');
 
   const sidebarHeading = document.createElement('h1');
   sidebarHeading.classList.add(
