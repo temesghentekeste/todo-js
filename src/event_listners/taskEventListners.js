@@ -7,6 +7,7 @@ import {
   resetAddTaskModal,
   resetUpdateTaskModal,
 } from '../../utilities/reset_task_modal';
+import getAlertMessage from '../../utilities/alert_message';
 
 const { DateTime } = require('luxon');
 
@@ -26,8 +27,11 @@ const addNewTask = () => {
 
     const now = DateTime.local();
     let task = new Task(name, desc, date, priority, now);
+    // Inser new task modal
+    const taskModal = document.querySelector('#taskModal');
     // Validate task
     if (!task.validate()) {
+      taskModal.prepend(getAlertMessage());
       return false;
     }
 
@@ -38,7 +42,6 @@ const addNewTask = () => {
     // Reset add task modal
     resetAddTaskModal();
     // Dismiss the modal
-    const taskModal = document.querySelector('#taskModal');
     taskModal.querySelector('[data-dismiss="modal"]').click();
     return true;
   });
@@ -83,11 +86,14 @@ const updateTask = () => {
     const date = document.querySelector('#update-task-date').value;
     const priority = document.querySelector('#update-task-priority').value;
 
+    // Update task modal
+    const updateTaskModal = document.querySelector('#updateTaskModal');
     // Validate task
     const now = DateTime.local();
     const task = new Task(name, description, date, priority, now);
 
     if (!task.validate()) {
+      updateTaskModal.prepend(getAlertMessage());
       return false;
     }
     // Retrieve the createdAt field of the current task
@@ -100,7 +106,7 @@ const updateTask = () => {
       description,
       date,
       priority,
-      currentTask.createdAt,
+      currentTask.createdAt
     );
 
     db.updateTask(
@@ -109,13 +115,12 @@ const updateTask = () => {
       description,
       priority,
       date,
-      currentTask.createdAt,
+      currentTask.createdAt
     );
 
     // Reset update task modal
     resetUpdateTaskModal();
     // Dismiss the modal
-    const updateTaskModal = document.querySelector('#updateTaskModal');
     updateTaskModal.querySelector('[data-dismiss="modal"]').click();
     return true;
   });
@@ -140,6 +145,4 @@ const deleteTask = () => {
   });
 };
 
-export {
-  addNewTask, openUpdateTaskModal, updateTask, deleteTask,
-};
+export { addNewTask, openUpdateTaskModal, updateTask, deleteTask };

@@ -17,6 +17,7 @@ import {
   deleteTask,
   openUpdateTaskModal,
 } from './taskEventListners';
+import getAlertMessage from '../../utilities/alert_message';
 
 const updateProject = () => {
   const btnUpdateProject = document.querySelector('#update-project');
@@ -28,9 +29,12 @@ const updateProject = () => {
     const name = document.querySelector('#update-project-name').value;
     const desc = document.querySelector('#update-project-description').value;
 
+    // Update project modal
+    const updateProjectModal = document.querySelector('#updateProjectModal');
     const project = new Project(name, desc);
     // Validate project input data
     if (!project.validate()) {
+      updateProjectModal.prepend(getAlertMessage());
       return;
     }
 
@@ -49,7 +53,6 @@ const updateProject = () => {
     resetUpdateProjectModal();
 
     // Dismiss the modal
-    const updateProjectModal = document.querySelector('#updateProjectModal');
     updateProjectModal.querySelector('[data-dismiss="modal"]').click();
   });
 
@@ -136,8 +139,12 @@ const addNewProject = () => {
 
     const newProject = new Project(name, desc);
 
+    // Project update modal
+    const projectModal = document.querySelector('#projectModal');
     // Validate project input data
     if (!newProject.validate()) {
+      console.log('reached');
+      projectModal.prepend(getAlertMessage());
       return;
     }
 
@@ -152,7 +159,6 @@ const addNewProject = () => {
     resetAddProjectModal();
 
     // Dismiss the modal
-    const projectModal = document.querySelector('#projectModal');
     projectModal.querySelector('[data-dismiss="modal"]').click();
   });
 };

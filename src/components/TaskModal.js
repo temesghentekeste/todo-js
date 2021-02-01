@@ -20,7 +20,7 @@ const getTaskModal = () => {
 
                 <div class="form-group">
                   <label for="task-name" class="col-form-label">Task:</label>
-                  <input type="text" class="form-control" id="task-name">
+                  <input type="text" class="form-control" id="task-name" pattern="^([_A-z0-9]){3,}$" required>
                 </div>
 
                 <div class="form-group">

@@ -69,7 +69,7 @@ class Db {
       projects.push(currentProject.currentProject);
       localStorage.setItem(this.localStorageKey, JSON.stringify(projects));
     } else {
-      currentProject = projects[0];
+      [currentProject] = projects;
     }
 
     return currentProject;
