@@ -3,7 +3,6 @@ import Db from '../data/db';
 import renderNewProject from '../ui/projects/new';
 import renderUpdatedProject from '../ui/projects/edit';
 import renderDeletedProject from '../ui/projects/delete';
-// import currentProject from '../ui/projects/current';
 import renderAllProjects from '../ui/projects/all_projects';
 import setCurrentProjectStyle from '../../utilities/current_style';
 import {
@@ -17,7 +16,6 @@ import {
   deleteTask,
   openUpdateTaskModal,
 } from './taskEventListners';
-import getAlertMessage from '../../utilities/alert_message';
 
 const updateProject = () => {
   const btnUpdateProject = document.querySelector('#update-project');
@@ -34,7 +32,6 @@ const updateProject = () => {
     const project = new Project(name, desc);
     // Validate project input data
     if (!project.validate()) {
-      updateProjectModal.prepend(getAlertMessage());
       return;
     }
 
@@ -143,7 +140,6 @@ const addNewProject = () => {
     const projectModal = document.querySelector('#projectModal');
     // Validate project input data
     if (!newProject.validate()) {
-      projectModal.prepend(getAlertMessage());
       return;
     }
 

@@ -1,6 +1,6 @@
 import './main.scss';
 import home from './views/home';
-import getFooter from './components/Footer'
+import getFooter from './components/Footer';
 import {
   addNewProject,
   renderCurrentProject,
@@ -61,8 +61,8 @@ const PageCtrl = (() => {
   // Set Footer
   const setFooter = () => {
     const contentDiv = document.querySelector('#content');
-    contentDiv.appendChild(getFooter())
-  }
+    contentDiv.appendChild(getFooter());
+  };
 
   return {
     init() {

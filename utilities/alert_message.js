@@ -1,5 +1,6 @@
 const getAlertMessage = () => {
   const UIAlertDiv = document.createElement('div');
+  UIAlertDiv.classList.add('alert-div');
   const html = `<div class="alert alert-danger">
   <a class="close" data-dismiss="alert">×</a>
   All fields are required. Please fill out the form to proceed!

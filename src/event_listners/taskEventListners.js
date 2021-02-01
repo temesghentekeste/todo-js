@@ -7,7 +7,6 @@ import {
   resetAddTaskModal,
   resetUpdateTaskModal,
 } from '../../utilities/reset_task_modal';
-import getAlertMessage from '../../utilities/alert_message';
 
 const { DateTime } = require('luxon');
 
@@ -31,7 +30,6 @@ const addNewTask = () => {
     const taskModal = document.querySelector('#taskModal');
     // Validate task
     if (!task.validate()) {
-      taskModal.prepend(getAlertMessage());
       return false;
     }
 
@@ -93,7 +91,6 @@ const updateTask = () => {
     const task = new Task(name, description, date, priority, now);
 
     if (!task.validate()) {
-      updateTaskModal.prepend(getAlertMessage());
       return false;
     }
     // Retrieve the createdAt field of the current task

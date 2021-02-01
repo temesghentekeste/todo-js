@@ -1,4 +1,5 @@
-import getCurrentYear from '../../utilities/curren_year'
+import getCurrentYear from '../../utilities/curren_year';
+
 const getFooter = () => {
   const footer = document.createElement('footer');
 
