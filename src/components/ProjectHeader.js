@@ -1,4 +1,8 @@
-import { openUpdateProjectModal, deleteProject } from '../shared/common';
+import {
+  openUpdateProjectModal,
+  deleteProject,
+  openAddNewTaskModal,
+} from '../shared/common';
 
 const getProjectHeader = (name, description) => {
   // Project Header
@@ -40,6 +44,7 @@ const getProjectHeader = (name, description) => {
   btnAddTask.setAttribute('data-toggle', 'modal');
   btnAddTask.setAttribute('data-target', '#taskModal');
 
+  btnAddTask.addEventListener('click', openAddNewTaskModal);
   // Append the update btn  to the buttonsContainer
   btnsContainer.append(btnAddTask);
 

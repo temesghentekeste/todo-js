@@ -1,3 +1,5 @@
+import { addNewTask } from '../event_listners/taskEventListners';
+
 const getTaskModal = () => {
   const modal = document.createElement('div');
   modal.innerHTML = `
@@ -56,6 +58,9 @@ const getTaskModal = () => {
       </div>
     </div>
   `;
+  modal
+    .querySelector('#add-task')
+    .addEventListener('click', (e) => addNewTask(e));
   return modal;
 };
 

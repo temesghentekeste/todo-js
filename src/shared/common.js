@@ -5,6 +5,10 @@ import renderAllProjects from '../ui/projects/all_projects';
 import getProjectDetails from '../components/ProjectDetails';
 
 const openUpdateProjectModal = () => {
+  const alertDiv = document.querySelector('.alert-div');
+  if (alertDiv) {
+    alertDiv.remove();
+  }
   const db = new Db();
   const { currentProject } = db.getCurrentProject();
   // e.preventDefault();
@@ -56,7 +60,7 @@ const getProjectHeader = (name, description) => {
     'font-weight-bold',
     'd-flex',
     'flex-column',
-    'main-project-header',
+    'main-project-header'
   );
 
   // Name:h1
@@ -93,7 +97,8 @@ const getProjectHeader = (name, description) => {
   btnUpdateProject.classList.add('update-btn', 'btn', 'btn-primary', 'mr-2');
 
   btnUpdateProject.id = 'btn-update-project';
-  btnUpdateProject.innerHTML = '<i class="fas fa-pencil-alt mr-2"></i>Update Project';
+  btnUpdateProject.innerHTML =
+    '<i class="fas fa-pencil-alt mr-2"></i>Update Project';
 
   // Set attributes to open Update Project Modal
   btnUpdateProject.setAttribute('data-toggle', 'modal');
@@ -107,7 +112,8 @@ const getProjectHeader = (name, description) => {
   btnDeleteProject.classList.add('btn-delete-project', 'btn', 'btn-danger');
 
   btnDeleteProject.id = 'btn-delete-project';
-  btnDeleteProject.innerHTML = '<i class="fas fa-trash-alt mr-2"></i>Delete Project';
+  btnDeleteProject.innerHTML =
+    '<i class="fas fa-trash-alt mr-2"></i>Delete Project';
 
   // Append the buttons  to the buttonsContainer
   btnsContainer.append(btnDeleteProject);
@@ -140,9 +146,17 @@ const currentProject = (project) => {
   return UIMain;
 };
 
+const openAddNewTaskModal = () => {
+  const alertDiv = document.querySelector('.alert-div');
+  if (alertDiv) {
+    alertDiv.remove();
+  }
+};
+
 export {
   openUpdateProjectModal,
   deleteProject,
   currentProject,
   getProjectHeader,
+  openAddNewTaskModal,
 };

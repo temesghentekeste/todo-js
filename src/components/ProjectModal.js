@@ -1,4 +1,7 @@
-import { addNewProject } from '../event_listners/projectEventListners';
+import {
+  addNewProject,
+  openAddNewTask,
+} from '../event_listners/projectEventListners';
 
 const getProjectModal = () => {
   const modal = document.createElement('div');

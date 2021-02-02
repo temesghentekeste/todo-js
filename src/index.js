@@ -4,19 +4,12 @@ import getFooter from './components/Footer';
 import {
   addNewProject,
   renderCurrentProject,
-  updateProject,
 } from './event_listners/projectEventListners';
 import Project from './model/project';
 import Db from './data/db';
 import renderNewProject from './ui/projects/new';
 import renderAllProjects from './ui/projects/all_projects';
 
-import {
-  addNewTask,
-  deleteTask,
-  openUpdateTaskModal,
-  updateTask,
-} from './event_listners/taskEventListners';
 import setCurrentProjectStyle from '../utilities/current_style';
 
 const PageCtrl = (() => {
@@ -71,11 +64,6 @@ const PageCtrl = (() => {
       addNewProject();
       renderCurrentProject();
 
-      updateProject();
-      addNewTask();
-      openUpdateTaskModal();
-      updateTask();
-      deleteTask();
       // Style current project on the UI
       setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
       setFooter();

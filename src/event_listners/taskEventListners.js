@@ -7,42 +7,45 @@ import {
   resetAddTaskModal,
   resetUpdateTaskModal,
 } from '../../utilities/reset_task_modal';
+import getAlertMessage from '../../utilities/alert_message';
 
 const { DateTime } = require('luxon');
 
 // Task event Listners
 
 // Add new project on modal save button click
-const addNewTask = () => {
-  const btnAddNewTask = document.querySelector('#add-task');
+const addNewTask = (e) => {
+  e.preventDefault();
 
-  btnAddNewTask.addEventListener('click', (e) => {
-    e.preventDefault();
+  const name = document.querySelector('#task-name').value;
+  const desc = document.querySelector('#task-description').value;
+  const date = document.querySelector('#task-date').value;
+  const priority = document.querySelector('#task-priority').value;
 
-    const name = document.querySelector('#task-name').value;
-    const desc = document.querySelector('#task-description').value;
-    const date = document.querySelector('#task-date').value;
-    const priority = document.querySelector('#task-priority').value;
-
-    const now = DateTime.local();
-    let task = new Task(name, desc, date, priority, now);
-    // Inser new task modal
-    const taskModal = document.querySelector('#taskModal');
-    // Validate task
-    if (!task.validate()) {
-      return false;
+  const now = DateTime.local();
+  let task = new Task(name, desc, date, priority, now);
+  // Inser new task modal
+  const taskModal = document.querySelector('#taskModal');
+  // Validate task
+  if (!task.validate()) {
+    const alertDiv = document.querySelector('.alert-div');
+    if (alertDiv) {
+      alertDiv.remove();
     }
+    taskModal.prepend(getAlertMessage());
 
-    const db = new Db();
-    task = db.saveTask(task);
-    renderNewTask(task);
+    return false;
+  }
 
-    // Reset add task modal
-    resetAddTaskModal();
-    // Dismiss the modal
-    taskModal.querySelector('[data-dismiss="modal"]').click();
-    return true;
-  });
+  const db = new Db();
+  task = db.saveTask(task);
+  renderNewTask(task);
+
+  // Reset add task modal
+  resetAddTaskModal();
+  // Dismiss the modal
+  taskModal.querySelector('[data-dismiss="modal"]').click();
+  return true;
 };
 
 // Delete Task
@@ -90,58 +93,60 @@ const openUpdateTaskModal = (e) => {
 };
 
 // Render updated task upon click of btnUpdateTask
-const updateTask = () => {
-  const btnUpdateTask = document.querySelector('#update-task');
-  btnUpdateTask.addEventListener('click', (e) => {
-    e.preventDefault();
+const updateTask = (e) => {
+  console.log('clicked');
+  e.preventDefault();
 
-    const UITaskName = document.querySelector('#update-task-name');
-    const taskId = UITaskName.getAttribute('data-id');
-    const name = UITaskName.value;
-    const description = document.querySelector('#update-task-description')
-      .value;
-    const date = document.querySelector('#update-task-date').value;
-    const priority = document.querySelector('#update-task-priority').value;
+  const UITaskName = document.querySelector('#update-task-name');
+  const taskId = UITaskName.getAttribute('data-id');
+  const name = UITaskName.value;
+  const description = document.querySelector('#update-task-description').value;
+  const date = document.querySelector('#update-task-date').value;
+  const priority = document.querySelector('#update-task-priority').value;
 
-    // Update task modal
-    const updateTaskModal = document.querySelector('#updateTaskModal');
-    // Validate task
-    const now = DateTime.local();
-    const task = new Task(name, description, date, priority, now);
+  // Update task modal
+  const updateTaskModal = document.querySelector('#updateTaskModal');
+  // Validate task
+  const now = DateTime.local();
+  const task = new Task(name, description, date, priority, now);
 
-    if (!task.validate()) {
-      return false;
+  if (!task.validate()) {
+    const alertDiv = document.querySelector('.alert-div');
+    if (alertDiv) {
+      alertDiv.remove();
     }
-    // Retrieve the createdAt field of the current task
-    const db = new Db();
-    const currentTask = db.getCurrentTask(taskId);
-    const taskCard = document.querySelector(`.card-${taskId}`);
-    taskCard.innerHTML = renderUpdatedTask(
-      taskId,
-      name,
-      description,
-      date,
-      priority,
-      currentTask.createdAt
-    );
+    updateTaskModal.prepend(getAlertMessage());
+    return false;
+  }
+  // Retrieve the createdAt field of the current task
+  const db = new Db();
+  const currentTask = db.getCurrentTask(taskId);
+  const taskCard = document.querySelector(`.card-${taskId}`);
+  taskCard.innerHTML = renderUpdatedTask(
+    taskId,
+    name,
+    description,
+    date,
+    priority,
+    currentTask.createdAt
+  );
 
-    taskCard.addEventListener('click', (e) => deleteTask(e));
+  taskCard.addEventListener('click', (e) => deleteTask(e));
 
-    db.updateTask(
-      taskId,
-      name,
-      description,
-      priority,
-      date,
-      currentTask.createdAt
-    );
+  db.updateTask(
+    taskId,
+    name,
+    description,
+    priority,
+    date,
+    currentTask.createdAt
+  );
 
-    // Reset update task modal
-    resetUpdateTaskModal();
-    // Dismiss the modal
-    updateTaskModal.querySelector('[data-dismiss="modal"]').click();
-    return true;
-  });
+  // Reset update task modal
+  resetUpdateTaskModal();
+  // Dismiss the modal
+  updateTaskModal.querySelector('[data-dismiss="modal"]').click();
+  return true;
 };
 
 export { addNewTask, openUpdateTaskModal, updateTask, deleteTask };
