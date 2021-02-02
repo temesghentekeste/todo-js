@@ -20,7 +20,7 @@ const getUpdateTaskModal = () => {
 
                 <div class="form-group">
                   <label for="update-task-name" class="col-form-label">Task:</label>
-                  <input type="text" class="form-control" id="update-task-name" required>
+                  <input type="text" class="form-control" id="update-task-name">
                 </div>
 
                 <div class="form-group">
@@ -56,6 +56,7 @@ const getUpdateTaskModal = () => {
       </div>
     </div>
   `;
+
   return modal;
 };
 
