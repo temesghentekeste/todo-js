@@ -15,24 +15,17 @@ const home = (currentProject) => {
   UILayoutRow.classList.add('row');
   UILayoutDiv.appendChild(UILayoutRow);
 
-  // Sidebar: aside
   UILayoutRow.appendChild(sidebar());
 
-  // Main: main
   UILayoutRow.appendChild(main(currentProject));
 
-  // Append project modal: insert mode
   container.appendChild(getProjectModal());
 
-  // Append project modal: update mode
   container.appendChild(getUpdateProjectModal());
 
-  // Append task modal: insert mode
   container.appendChild(getTaskModal());
 
-  // Append update task modal: update mode
   container.appendChild(getUpdateTaskModal());
-  // Append the container fluid to the main content div
   container.appendChild(UILayoutDiv);
 };
 

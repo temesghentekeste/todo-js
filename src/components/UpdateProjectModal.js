@@ -1,3 +1,5 @@
+import { updateProject } from '../event_listners/projectEventListners';
+
 const getUpdateProjectModal = () => {
   const modal = document.createElement('div');
   modal.innerHTML = `
@@ -39,6 +41,10 @@ const getUpdateProjectModal = () => {
       </div>
     </div>
   `;
+  modal
+    .querySelector('#update-project')
+    .addEventListener('click', updateProject);
+
   return modal;
 };
 

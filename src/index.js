@@ -5,7 +5,6 @@ import {
   addNewProject,
   renderCurrentProject,
   updateProject,
-  deleteProject,
 } from './event_listners/projectEventListners';
 import Project from './model/project';
 import Db from './data/db';
@@ -51,7 +50,7 @@ const PageCtrl = (() => {
     const defaultProject = new Project(
       'Default Project',
       'Default Project Description',
-      [],
+      []
     );
 
     renderNewProject(defaultProject);
@@ -73,7 +72,6 @@ const PageCtrl = (() => {
       renderCurrentProject();
 
       updateProject();
-      deleteProject();
       addNewTask();
       openUpdateTaskModal();
       updateTask();

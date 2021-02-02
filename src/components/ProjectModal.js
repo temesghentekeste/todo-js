@@ -1,3 +1,5 @@
+import { addNewProject } from '../event_listners/projectEventListners';
+
 const getProjectModal = () => {
   const modal = document.createElement('div');
   modal.innerHTML = `
@@ -39,6 +41,8 @@ const getProjectModal = () => {
       </div>
     </div>
   `;
+  // Attach event handler to btn
+  modal.querySelector('#add-project').addEventListener('click', addNewProject);
   return modal;
 };
 

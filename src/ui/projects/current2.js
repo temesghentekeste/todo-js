@@ -14,10 +14,8 @@ const currentProject = (project) => {
   UIMain.innerHTML = '';
   const { name, description, tasks } = project;
 
-  // Get project header and append it to UIMain DOM element
   UIMain.append(getProjectHeader(name, description));
 
-  // Project tasks
   const tasksContainer = document.createElement('div');
   tasksContainer.classList.add('container', 'mt-5', 'pb-2', 'mx-4');
 
