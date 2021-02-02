@@ -1,6 +1,5 @@
 import {
   addNewProject,
-  openAddNewTask,
 } from '../event_listners/projectEventListners';
 
 const getProjectModal = () => {
@@ -44,7 +43,6 @@ const getProjectModal = () => {
       </div>
     </div>
   `;
-  // Attach event handler to btn
   modal.querySelector('#add-project').addEventListener('click', addNewProject);
   return modal;
 };

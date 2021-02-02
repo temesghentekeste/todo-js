@@ -7,13 +7,10 @@ import {
   resetAddTaskModal,
   resetUpdateTaskModal,
 } from '../../utilities/reset_task_modal';
-import {getAlertMessage, removeAlertMessage} from '../../utilities/alert_message';
+import { getAlertMessage, removeAlertMessage } from '../../utilities/alert_message';
 
 const { DateTime } = require('luxon');
 
-// Task event Listners
-
-// Add new project on modal save button click
 const addNewTask = (e) => {
   e.preventDefault();
 
@@ -24,9 +21,7 @@ const addNewTask = (e) => {
 
   const now = DateTime.local();
   let task = new Task(name, desc, date, priority, now);
-  // Inser new task modal
   const taskModal = document.querySelector('#taskModal');
-  // Validate task
   if (!task.validate()) {
     removeAlertMessage();
     taskModal.prepend(getAlertMessage());
@@ -38,37 +33,30 @@ const addNewTask = (e) => {
   task = db.saveTask(task);
   renderNewTask(task);
 
-  // Reset add task modal
   resetAddTaskModal();
-  // Dismiss the modal
   taskModal.querySelector('[data-dismiss="modal"]').click();
   return true;
 };
 
-// Delete Task
 const deleteTask = () => {
   const btnProjectDetails = document.querySelector('.project-tasks-row');
 
   btnProjectDetails.addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-delete-task')) {
       const taskId = e.target.parentElement.id;
-      // Update UI to reflect deleted task
       removeDeletedTask(taskId);
 
-      // Get project from the datastore
       const db = new Db();
 
-      // Remove deleted project from the datastore (LS)
       db.deleteTask(taskId);
     }
   });
 };
 
-// Open update task modal
 const openUpdateTaskModal = (e) => {
   if (
-    e !== undefined &&
-    e.target.getAttribute('data-target') === '#updateTaskModal'
+    e !== undefined
+    && e.target.getAttribute('data-target') === '#updateTaskModal'
   ) {
     const taskId = e.target.parentElement.id;
     let name = e.target.parentNode.parentNode.children[0].textContent;
@@ -89,9 +77,7 @@ const openUpdateTaskModal = (e) => {
   }
 };
 
-// Render updated task upon click of btnUpdateTask
 const updateTask = (e) => {
-  console.log('clicked');
   e.preventDefault();
 
   const UITaskName = document.querySelector('#update-task-name');
@@ -101,9 +87,7 @@ const updateTask = (e) => {
   const date = document.querySelector('#update-task-date').value;
   const priority = document.querySelector('#update-task-priority').value;
 
-  // Update task modal
   const updateTaskModal = document.querySelector('#updateTaskModal');
-  // Validate task
   const now = DateTime.local();
   const task = new Task(name, description, date, priority, now);
 
@@ -112,7 +96,6 @@ const updateTask = (e) => {
     updateTaskModal.prepend(getAlertMessage());
     return false;
   }
-  // Retrieve the createdAt field of the current task
   const db = new Db();
   const currentTask = db.getCurrentTask(taskId);
   const taskCard = document.querySelector(`.card-${taskId}`);
@@ -122,7 +105,7 @@ const updateTask = (e) => {
     description,
     date,
     priority,
-    currentTask.createdAt
+    currentTask.createdAt,
   );
 
   taskCard.addEventListener('click', (e) => deleteTask(e));
@@ -133,14 +116,14 @@ const updateTask = (e) => {
     description,
     priority,
     date,
-    currentTask.createdAt
+    currentTask.createdAt,
   );
 
-  // Reset update task modal
   resetUpdateTaskModal();
-  // Dismiss the modal
   updateTaskModal.querySelector('[data-dismiss="modal"]').click();
   return true;
 };
 
-export { addNewTask, openUpdateTaskModal, updateTask, deleteTask };
+export {
+  addNewTask, openUpdateTaskModal, updateTask, deleteTask,
+};

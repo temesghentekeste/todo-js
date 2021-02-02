@@ -13,7 +13,6 @@ import renderAllProjects from './ui/projects/all_projects';
 import setCurrentProjectStyle from '../utilities/current_style';
 
 const PageCtrl = (() => {
-  // Create container to hold all the page contnets
   const createContainer = () => {
     const contentDiv = document.querySelector('#content');
     const container = document.createElement('div');
@@ -21,9 +20,7 @@ const PageCtrl = (() => {
     contentDiv.append(container);
   };
 
-  // Rendre home page
   const renderHome = () => {
-    // Default/Current project
     const db = new Db();
     let currentProject = db.getCurrentProject();
     currentProject = currentProject.currentProject;
@@ -31,7 +28,6 @@ const PageCtrl = (() => {
     home(currentProject);
   };
 
-  // Render projects from the data store
   const renderProjects = () => {
     const projects = new Db().getProjects();
     if (projects.length > 0) {
@@ -39,18 +35,16 @@ const PageCtrl = (() => {
       return;
     }
 
-    // Initialize and render default project
     const defaultProject = new Project(
       'Default Project',
       'Default Project Description',
-      []
+      [],
     );
 
     renderNewProject(defaultProject);
     defaultProject.save();
   };
 
-  // Set Footer
   const setFooter = () => {
     const contentDiv = document.querySelector('#content');
     contentDiv.appendChild(getFooter());
@@ -64,7 +58,6 @@ const PageCtrl = (() => {
       addNewProject();
       renderCurrentProject();
 
-      // Style current project on the UI
       setCurrentProjectStyle(new Db().getCurrentProject().currentProject.id);
       setFooter();
     },
