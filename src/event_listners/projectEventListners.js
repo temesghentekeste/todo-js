@@ -10,7 +10,7 @@ import {
   resetUpdateProjectModal,
 } from '../../utilities/reset_project_modal';
 
-import getAlertMessage from '../../utilities/alert_message';
+import {getAlertMessage, removeAlertMessage} from '../../utilities/alert_message';
 
 const updateProject = () => {
   // e.preventDefault();
@@ -23,10 +23,7 @@ const updateProject = () => {
   const project = new Project(name, desc);
   // Validate project input data
   if (!project.validate()) {
-    const alertDiv = document.querySelector('.alert-div');
-    if (alertDiv) {
-      alertDiv.remove();
-    }
+    removeAlertMessage()
     updateProjectModal.prepend(getAlertMessage());
     return;
   }
@@ -51,10 +48,7 @@ const updateProject = () => {
 
 // Event Listners
 const openAddNewProject = () => {
-  const alertDiv = document.querySelector('.alert-div');
-  if (alertDiv) {
-    alertDiv.remove();
-  }
+ removeAlertMessage();
 };
 // Add new project on modal save button click
 const addNewProject = () => {
@@ -67,10 +61,7 @@ const addNewProject = () => {
   const projectModal = document.querySelector('#projectModal');
   // Validate project input data
   if (!newProject.validate()) {
-    const alertDiv = document.querySelector('.alert-div');
-    if (alertDiv) {
-      alertDiv.remove();
-    }
+    removeAlertMessage();
     projectModal.prepend(getAlertMessage());
 
     return;

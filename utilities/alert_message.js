@@ -10,4 +10,10 @@ const getAlertMessage = () => {
   return UIAlertDiv;
 };
 
-export default getAlertMessage;
+const removeAlertMessage = () => {
+  const alertDiv = document.querySelector('.alert-div');
+  if (alertDiv) {
+    alertDiv.remove();
+  }
+}
+export  { getAlertMessage, removeAlertMessage };

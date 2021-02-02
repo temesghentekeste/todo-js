@@ -3,12 +3,10 @@ import setCurrentProjectStyle from '../../utilities/current_style';
 import renderDeletedProject from '../ui/projects/delete';
 import renderAllProjects from '../ui/projects/all_projects';
 import getProjectDetails from '../components/ProjectDetails';
+import { removeAlertMessage } from '../../utilities/alert_message';
 
 const openUpdateProjectModal = () => {
-  const alertDiv = document.querySelector('.alert-div');
-  if (alertDiv) {
-    alertDiv.remove();
-  }
+  removeAlertMessage();
   const db = new Db();
   const { currentProject } = db.getCurrentProject();
   // e.preventDefault();
@@ -147,10 +145,7 @@ const currentProject = (project) => {
 };
 
 const openAddNewTaskModal = () => {
-  const alertDiv = document.querySelector('.alert-div');
-  if (alertDiv) {
-    alertDiv.remove();
-  }
+  removeAlertMessage();
 };
 
 export {

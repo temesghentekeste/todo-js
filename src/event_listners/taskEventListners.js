@@ -7,7 +7,7 @@ import {
   resetAddTaskModal,
   resetUpdateTaskModal,
 } from '../../utilities/reset_task_modal';
-import getAlertMessage from '../../utilities/alert_message';
+import {getAlertMessage, removeAlertMessage} from '../../utilities/alert_message';
 
 const { DateTime } = require('luxon');
 
@@ -28,10 +28,7 @@ const addNewTask = (e) => {
   const taskModal = document.querySelector('#taskModal');
   // Validate task
   if (!task.validate()) {
-    const alertDiv = document.querySelector('.alert-div');
-    if (alertDiv) {
-      alertDiv.remove();
-    }
+    removeAlertMessage();
     taskModal.prepend(getAlertMessage());
 
     return false;
@@ -111,10 +108,7 @@ const updateTask = (e) => {
   const task = new Task(name, description, date, priority, now);
 
   if (!task.validate()) {
-    const alertDiv = document.querySelector('.alert-div');
-    if (alertDiv) {
-      alertDiv.remove();
-    }
+    removeAlertMessage();
     updateTaskModal.prepend(getAlertMessage());
     return false;
   }
