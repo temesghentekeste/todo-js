@@ -22,3 +22,11 @@ test('it should return false for invalid project', () => {
 
   expect(isValid).not.toBe(true);
 });
+
+test('it should return true for valid project', () => {
+  const project = new Project('project 1', 'project 1 description');
+
+  const isValid = project.validate();
+
+  expect(isValid).toBe(true);
+});
