@@ -15,3 +15,8 @@ it('should return a project by its id', () => {
   const currentProject = db.getProject(project.id);
   expect(project.id).toBe(currentProject.id);
 });
+
+it('should return all projects', () => {
+  const projects = db.getProjects();
+  expect(projects.length).toBe(2);
+});
