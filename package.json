@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+   "jest": {
+    "verbose": true
+  },
   "scripts": {
     "test": "jest",
     "watch": "jest --watch *.js",
-    "start": "webpack serve --config webpack.dev.js --open",
+    "start": "webpack serve --config webpack.deav.js --open",
     "build": "webpack  --config webpack.prod.js"
   },
   "keywords": [],
