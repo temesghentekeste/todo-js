@@ -1,11 +1,9 @@
 const { default: Project } = require('../model/project');
 
-
 let project;
 const createProject = () => {
   project = new Project('Project 1', 'Project 1 Description');
-}
-
+};
 
 beforeAll(() => createProject());
 
@@ -14,7 +12,6 @@ test('it should create a new project', () => {
 });
 
 test('it should set the current project', () => {
-
   project.save();
 
   const currentProject = project.getCurrentProject();
@@ -23,19 +20,17 @@ test('it should set the current project', () => {
 
 describe('Test project validation', () => {
   test('it should return false for invalid project', () => {
-    project.description = ''
-  
+    project.description = '';
+
     const isValid = project.validate();
-  
+
     expect(isValid).not.toBe(true);
   });
-  
+
   test('it should return true for valid project', () => {
-  
-    project.description = 'Some descriptoin'
+    project.description = 'Some descriptoin';
     const isValid = project.validate();
-  
+
     expect(isValid).toBe(true);
   });
-
-})
+});
