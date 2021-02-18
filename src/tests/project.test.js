@@ -14,3 +14,11 @@ test('it should set the current project', () => {
   const currentProject = project.getCurrentProject();
   expect(project.name).toBe(currentProject.name);
 });
+
+test('it should return false for invalid project', () => {
+  const project = new Project('project 1', '');
+
+  const isValid = project.validate();
+
+  expect(isValid).not.toBe(true);
+});
