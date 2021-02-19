@@ -39,4 +39,12 @@ describe('Update', () => {
     const currentProject = db.getProject(project.id);
     expect(project.name).toBe(currentProject.name);
   });
+
+  it('should set current project to updated project', () => {
+    project.name = 'React Calculator';
+    db.updateProject(project);
+    let currentProject = db.getCurrentProject();
+    currentProject = currentProject.currentProject;
+    expect(project.id).toBe(currentProject.id);
+  });
 });
