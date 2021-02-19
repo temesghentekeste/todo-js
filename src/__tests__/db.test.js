@@ -59,8 +59,8 @@ describe('Delete', () => {
   });
 
   it('should set current project to a new project', () => {
-     let currentProject = db.getCurrentProject();
-     currentProject = currentProject.currentProject;
-     expect(project).not.toEqual(currentProject);
+    let currentProject = db.getCurrentProject();
+    currentProject = currentProject.currentProject;
+    expect(project).not.toEqual(currentProject);
   });
 });
