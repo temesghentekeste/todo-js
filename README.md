@@ -52,12 +52,15 @@ Todo JS is a JavaScript project that is intended to showcase an understanding of
 ### Run a Local Copy
 - Download the repository to a local directory on your computer.
 - Or run the following commands on the terminal
-  - git clone https://github.com/temesghentekeste/todo-js.git
-  - cd todo-js
-  - npm install
-  - npm install --only=dev
-  - npm start (This is the development mode)
-  - npm run build (This is the production mode)
+  $ git clone https://github.com/temesghentekeste/todo-js.git
+  $ cd todo-js
+  $ npm install
+  $ npm install --only=dev
+  $ npm start (This is the development mode)
+  $ npm run build (This is the production mode)
+
+### Run a Test
+  $ npm test (or) npm run watch
 
 ## Prerequisites<a name = "prerequisites"></a>
 - npm
