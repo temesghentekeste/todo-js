@@ -57,4 +57,10 @@ describe('Delete', () => {
 
     expect(db.getProjects().length).not.toBe(size);
   });
+
+  it('should set current project to a new project', () => {
+     let currentProject = db.getCurrentProject();
+     currentProject = currentProject.currentProject;
+     expect(project).not.toEqual(currentProject);
+  });
 });
