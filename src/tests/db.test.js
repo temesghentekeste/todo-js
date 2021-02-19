@@ -45,6 +45,16 @@ describe('Update', () => {
     db.updateProject(project);
     let currentProject = db.getCurrentProject();
     currentProject = currentProject.currentProject;
-    expect(project.id).toBe(currentProject.id);
+    expect(project).toEqual(currentProject);
+  });
+});
+
+describe('Delete', () => {
+  it('should delete a project', () => {
+    const size = db.getProjects().length;
+
+    db.deleteProject(project);
+
+    expect(db.getProjects().length).not.toBe(size);
   });
 });
